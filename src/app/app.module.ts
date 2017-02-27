@@ -5,10 +5,16 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { ContactDetailsComponent } from './contact-details/contact-details.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContactsDashboardComponent,
+    ContactsComponent,
+    ContactDetailsComponent
   ],
   imports: [
     BrowserModule,
