@@ -2,7 +2,11 @@ export class Person {
     id: number;
     firstName: string;
     lastName: string;
-    emailId: string;
+    gender: string;
+    dob: Date;    
     phoneNumber: number;
-    dob: Date;
+    alternatePhoneNumber: number;
+    emailId: string;
+    alternateEmailId: string;
+    maritalStatus: boolean;   
 }

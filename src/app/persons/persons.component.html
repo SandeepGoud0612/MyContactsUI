@@ -3,6 +3,7 @@
         <div class="col-md-6">
             <div class="card" style="height: 10rem;">Todo Remainders</div>
 </div>
+
 <div class="col-md-6">
     <div class="card" style="height: 10rem;">Todo Search Criteria</div>
 </div>
@@ -25,7 +26,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let person of persons">
-                <th>{{person.id}}</th>
+                <td>{{person.id}}</td>
                 <td>{{person.firstName}}</td>
                 <td>{{person.lastName}}</td>
                 <td>{{person.emailId}}</td>

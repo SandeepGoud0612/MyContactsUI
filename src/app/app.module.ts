@@ -5,16 +5,15 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
-import { ContactsComponent } from './contacts/contacts.component';
-import { ContactDetailsComponent } from './contact-details/contact-details.component';
+import { PersonsComponent } from './persons/persons.component';
+import { PersonDetailsComponent } from './person-details/person-details.component';
+import { PersonsService } from './persons.service'
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ContactsDashboardComponent,
-    ContactsComponent,
-    ContactDetailsComponent
+    AppComponent,    
+    PersonsComponent,
+    PersonDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +21,7 @@ import { ContactDetailsComponent } from './contact-details/contact-details.compo
     HttpModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [ PersonsService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
