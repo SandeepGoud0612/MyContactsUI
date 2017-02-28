@@ -1,27 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Person } from './person';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class PersonsService {
 
-  conatctsUrl: string = 'http://localhost:8080/contacts';
+  personsUrl: string = 'http://localhost:8080/persons';
 
   constructor(private http: Http) { }
 
-  getAllPersons(): Promise<Person[]> {    
-     return this.http.get(this.conatctsUrl)
-               .toPromise()
-               .then(response => response.json().data as Person[])
-               .catch(this.handleError);     
+  getAllPersons(): Observable<Person[]> {
+    return this.http.get(this.personsUrl)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+  private extractData(res: Response) {
+    let body = res.json();
+    return body || {};
+  }
+
+  private handleError(error: any) {
+    let errMsg = (error.message) ? error.message :
+    error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    console.error(errMsg);
+    return Observable.throw(errMsg);
   }
 
 }
