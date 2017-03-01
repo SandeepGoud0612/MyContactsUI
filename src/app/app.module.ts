@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
+import { AppRoutingModule } from './app-routing.module' 
 
 import { AppComponent } from './app.component';
 import { PersonsComponent } from './persons/persons.component';
@@ -19,7 +20,8 @@ import { PersonsService } from './persons.service'
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule
+    MaterialModule,
+    AppRoutingModule
   ],
   providers: [ PersonsService ],
   bootstrap: [AppComponent]
