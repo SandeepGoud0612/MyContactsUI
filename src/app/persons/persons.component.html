@@ -1,41 +1,68 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6">
-            <div class="card" style="height: 10rem;">Todo Remainders</div>
-</div>
+            <div class="card" style="height: 17rem;">Todo Remainders</div>
+        </div>
 
-<div class="col-md-6">
-    <div class="card" style="height: 10rem;">Todo Search Criteria 
+        <div class="col-md-6">
+            <div class="card" style="height: 17rem;">
+                <div class="container">
+                    <label class="label-head">Todo Search Criteria</label>
+                    <form>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-2 col-form-label">Name</label>
+                            <div class="col-10">
+                                <input class="form-control" type="text" value="" id="example-text-input">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-2 col-form-label">Email</label>
+                            <div class="col-10">
+                                <input class="form-control" type="text" value="" id="example-text-input">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-date-input" class="col-2 col-form-label">D.O.B</label>
+                            <div class="col-10">
+                                <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+                            </div>
+                        </div>
+                        <div class="form-group row" id="btn-form">
+                            <button type="button" class="btn btn-primary" (click)="getAllPersons()">Search</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
     </div>
-    <input class="btn btn-primary" type="button" value="Search" (click)="getAllPersons()">
-</div>
-</div>
 
-<div style="height: 20px;">  
-</div>
+    <div style="height: 20px;">
+    </div>
 
-<div class="row">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Phone Number</th>
-                <th>Email Id</th>
-                <th>Birthday</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let person of persons">
-                <td>{{person.id}}</td>
-                <a href="person-details" role="button">{{person.firstName}}</a>
-                <td>{{person.lastName}}</td>
-                <td>{{person.emailId}}</td>
-                <td>{{person.phoneNumber}}</td>
-                <td>{{person.dob | date: 'MMM/dd/yyyy'}}</td>
-            </tr>           
-        </tbody>
-    </table>
-</div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone Number</th>
+                    <th>Email Id</th>
+                    <th>Birthday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let person of persons">
+                    <td>{{person.id}}</td>
+                    <a href="person-details" role="button">{{person.firstName}}</a>
+                    <td>{{person.lastName}}</td>
+                    <td>{{person.emailId}}</td>
+                    <td>{{person.phoneNumber}}</td>
+                    <td>{{person.dob | date: 'MMM/dd/yyyy'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -1,0 +1,12 @@
+#btn-form
+{
+    float: right;
+    padding-right: 30px;
+}
+
+.label-head
+{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: bold;
+}
