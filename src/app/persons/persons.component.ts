@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Person } from '../person';
 import { PersonsService } from '../persons.service';
-import { CommonService } from '../common.service';
+import { CommonService } from '../common.service'
 
 @Component({
   selector: 'app-persons',

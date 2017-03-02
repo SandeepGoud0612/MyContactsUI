@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PersonsService } from '../persons.service';
 import { CommonService } from '../common.service';
+import { Person } from '../person';
 
 @Component({
   selector: 'app-person-details',
@@ -8,7 +10,11 @@ import { CommonService } from '../common.service';
 })
 export class PersonDetailsComponent implements OnInit {
 
-  constructor(private commonService: CommonService) { }
+   persons: Person[] = [];  
+
+   selectedPerson: Person;
+
+  constructor(private personService: PersonsService, private commonService: CommonService) { }
 
   ngOnInit() {
   }

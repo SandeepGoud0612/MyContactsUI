@@ -25,6 +25,6 @@ import { CommonService } from './common.service';
     AppRoutingModule
   ],
   providers: [ PersonsService, CommonService ],
-  bootstrap: [AppComponent], 
+  bootstrap: [ AppComponent ], 
 })
 export class AppModule { }

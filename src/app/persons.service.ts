@@ -8,7 +8,7 @@ export class PersonsService {
 
   personsUri: string = 'http://localhost:8080/persons';
 
-  constructor(private http: Http){} 
+  constructor(private http: Http){  } 
 
   getAllPersons(): Observable<Person[]> {
   return  this.http.get(this.personsUri + "/personaldetails")
