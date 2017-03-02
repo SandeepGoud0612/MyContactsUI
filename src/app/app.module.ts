@@ -8,7 +8,8 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component';
 import { PersonsComponent } from './persons/persons.component';
 import { PersonDetailsComponent } from './person-details/person-details.component';
-import { PersonsService } from './persons.service'
+import { PersonsService } from './persons.service';
+import { CommonService } from './common.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { PersonsService } from './persons.service'
     MaterialModule,
     AppRoutingModule
   ],
-  providers: [ PersonsService ],
-  bootstrap: [AppComponent]
+  providers: [ PersonsService, CommonService ],
+  bootstrap: [AppComponent], 
 })
 export class AppModule { }

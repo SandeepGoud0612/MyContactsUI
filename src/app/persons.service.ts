@@ -11,10 +11,16 @@ export class PersonsService {
   constructor(private http: Http){} 
 
   getAllPersons(): Observable<Person[]> {
-  return  this.http.get(this.personsUri)
+  return  this.http.get(this.personsUri + "/personaldetails")
             .map((response: Response) => response.json())
             .catch(this.handleError);     
   }
+
+ getPersonById(id: number): Observable<Person> {
+   return this.http.get(this.personsUri + "/personaldetails/" + id)
+          .map((res: Response) => res.json())
+          .catch(this.handleError);
+ }
 
    private handleError(error: any) {
     let errMsg = (error.message) ? error.message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';

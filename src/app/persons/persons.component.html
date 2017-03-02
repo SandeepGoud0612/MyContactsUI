@@ -42,7 +42,7 @@
                                 <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
                             </div>
                         </div>
-                        <div class="form-group row" id="btn-form">
+                        <div class="form-group row" id="btn-form">                            
                             <button type="button" class="btn btn-primary" (click)="getAllPersons()">Search</button>
                         </div>
                     </form>
@@ -73,9 +73,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let person of persons">
+                            <tr *ngFor="let person of commonService.persons">
                                 <td>{{person.id}}</td>
-                                <a href="person-details" role="button">{{person.firstName}}</a>
+                                <a href="person-details" role="button" (click)="onPersonSelect(person)">{{person.firstName}}</a>
                                 <td>{{person.lastName}}</td>
                                 <td>{{person.emailId}}</td>
                                 <td>{{person.phoneNumber}}</td>
