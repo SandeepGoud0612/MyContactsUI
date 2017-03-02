@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Person } from './person';
 
 @Injectable()
-export class CommonService {
+export class CommonService { 
 
-  constructor() {
-    alert('hi');
-  }
+   persons: Person[] = [];  
+
+   selectedPerson: Person;
 
 }
