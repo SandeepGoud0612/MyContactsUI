@@ -88,7 +88,8 @@
         <div class="card-header">
           Image
         </div>
-        <div class="card-block">
+        <div class="card-block" *ngIf="selectedPerson">
+          <img *ngIf="selectedPerson.image" src="{{selectedPerson.image}}" class="img-fluid" alt="Responsive image">
         </div>
       </div>
     </div>

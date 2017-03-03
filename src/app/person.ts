@@ -14,4 +14,5 @@ export class Person {
     maritalStatus: boolean;
     addressList: Address[]; 
     occasionList: Occasion[];
+    image: any;
 }
