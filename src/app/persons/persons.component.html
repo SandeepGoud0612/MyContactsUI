@@ -42,7 +42,7 @@
                                 <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
                             </div>
                         </div>
-                        <div class="form-group row" id="btn-form">                            
+                        <div class="form-group row" id="btn-form">
                             <button type="button" class="btn btn-primary" (click)="getAllPersons()">Search</button>
                         </div>
                     </form>
@@ -75,7 +75,7 @@
                         <tbody>
                             <tr *ngFor="let person of persons">
                                 <td>{{person.id}}</td>
-                                <a [routerLink]="['/person-details', person.id]">{{person.firstName}}</a>
+                                <td><a [routerLink]="['/person-details', person.id]">{{person.firstName}}</a></td>
                                 <td>{{person.lastName}}</td>
                                 <td>{{person.emailId}}</td>
                                 <td>{{person.phoneNumber}}</td>
