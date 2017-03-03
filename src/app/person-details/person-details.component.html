@@ -7,7 +7,30 @@
           Personal Details
         </div>
         <div class="card-block">
+          <form *ngIf="selectedPerson">
 
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="firstNameRead"></label>
+                  <input type="text" class="form-control" id="firstNameRead" value="{{selectedPerson.firstName}}" />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="lastNameRead"></label>
+                  <input type="text" class="form-control" id="lastNameRead" value="{{selectedPerson.lastName}}" />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="genderRead"></label>
+                  <input type="text" class="form-control" id="genderRead" value="{{selectedPerson.gender}}" />
+                </div>
+              </div>
+            </div>
+
+          </form>
         </div>
       </div>
     </div>

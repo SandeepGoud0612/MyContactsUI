@@ -12,18 +12,12 @@ export class PersonsComponent implements OnInit {
 
    persons: Person[] = [];  
 
-   selectedPerson: Person;
-
   constructor(private personService: PersonsService, private commonService: CommonService) { }
 
   ngOnInit() { }
 
   getAllPersons(): void {       
       this.personService.getAllPersons().subscribe(persons => this.persons = persons);
-  }
-
-  onPersonSelect(person: Person): void {
-    this.personService.getPersonById(person.id).subscribe(person => this.selectedPerson = person);
   }
 
 }

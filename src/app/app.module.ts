@@ -10,6 +10,7 @@ import { PersonsComponent } from './persons/persons.component';
 import { PersonDetailsComponent } from './person-details/person-details.component';
 import { PersonsService } from './persons.service';
 import { CommonService } from './common.service';
+import { PersonDetailsService } from './person-details.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { CommonService } from './common.service';
     MaterialModule,
     AppRoutingModule
   ],
-  providers: [ PersonsService, CommonService ],
+  providers: [ PersonsService, CommonService, PersonDetailsService ],
   bootstrap: [ AppComponent ], 
 })
 export class AppModule { }
