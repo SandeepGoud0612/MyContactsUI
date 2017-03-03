@@ -73,9 +73,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let person of commonService.persons">
+                            <tr *ngFor="let person of persons">
                                 <td>{{person.id}}</td>
-                                <a href="person-details" role="button" (click)="onPersonSelect(person)">{{person.firstName}}</a>
+                                <a [routerLink]="['/person-details', person.id]">{{person.firstName}}</a>
                                 <td>{{person.lastName}}</td>
                                 <td>{{person.emailId}}</td>
                                 <td>{{person.phoneNumber}}</td>
