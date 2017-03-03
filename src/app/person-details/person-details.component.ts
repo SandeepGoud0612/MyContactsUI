@@ -22,8 +22,8 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
       this.id = +params['id'];
     });
     this.personDetailsService.getPersonById(this.id).subscribe(person => {
-      this.selectedPerson = person
-  });   
+      this.selectedPerson = person; 
+    });
   }
 
   ngOnDestroy() {

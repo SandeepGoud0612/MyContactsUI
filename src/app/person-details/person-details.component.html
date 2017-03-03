@@ -41,13 +41,13 @@
                 </div>
               </div>
               <div class="col-md-4">
-                 <div class="form-group">
+                <div class="form-group">
                   <label for="maritalStatusRead">Marital Status</label>
                   <select class="form-control" id="maritalStatusRead" value="{{selectedPerson.maritalStatus}}" disabled>
                     <option>Single</option>
                     <option>Married</option>      
                    </select>
-                </div>                
+                </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
@@ -102,7 +102,31 @@
         <div class="card-header">
           Address
         </div>
-        <div class="card-block">
+        <div class="card-block" *ngIf="selectedPerson">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Address Line1</th>
+                <th>Address Line2</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>ZipCode</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="selectedPerson.addressList">
+              <tr *ngFor="let address of selectedPerson.addressList">
+                <td>{{address.id}}</td>
+                <td>{{address.addressLine1}}</td>
+                <td>{{address.addressLine2}}</td>
+                <td>{{address.city}}</td>
+                <td>{{address.state}}</td>
+                <td>{{address.country}}</td>
+                <td>{{address.zipCode}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -116,7 +140,25 @@
         <div class="card-header">
           Occasions
         </div>
-        <div class="card-block">
+        <div class="card-block" *ngIf="selectedPerson">
+           <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>RemindMe</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="selectedPerson.occasionList">
+              <tr *ngFor="let occasion of selectedPerson.occasionList">
+                <td>{{occasion.id}}</td>
+                <td>{{occasion.name}}</td>
+                <td>{{occasion.date | date: 'MMM/dd/yyyy'}}</td>
+                <td>{{occasion.remindMe}}</td>              
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

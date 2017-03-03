@@ -11,7 +11,7 @@ export class PersonDetailsService {
   constructor(private http: Http) { }
 
   getPersonById(id: number): Observable<Person> {
-    return this.http.get(this.personsUri + "/personaldetails/" + id)
+    return this.http.get(this.personsUri + "/" + id)
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }

@@ -1,3 +1,6 @@
+import { Address } from './address';
+import { Occasion } from './occasion';
+
 export class Person {
     id: number;
     firstName: string;
@@ -8,5 +11,7 @@ export class Person {
     alternatePhoneNumber: number;
     emailId: string;
     alternateEmailId: string;
-    maritalStatus: boolean;   
+    maritalStatus: boolean;
+    addressList: Address[]; 
+    occasionList: Occasion[];
 }
