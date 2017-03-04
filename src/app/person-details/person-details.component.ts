@@ -54,7 +54,10 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   }
 
   onOccasionDeleteClick(occasion: Occasion): void {
-
+    this.selectedPerson.occasionList = this.selectedPerson.occasionList.filter(occasionItem => occasion.id !== occasionItem.id);
+    this.personDetailsService.savePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
+      this.selectedPerson = person;       
+    }); 
   }
 
   onOccasionUpdateCancleClick(): void {
@@ -62,7 +65,10 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   }
 
   onOccasionUpdateSaveClick(): void {
-    this.readOnlyOccasion = true;
+     this.personDetailsService.savePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
+      this.selectedPerson = person; 
+       this.readOnlyOccasion = true;
+    });   
   }
  
   ngOnDestroy() {

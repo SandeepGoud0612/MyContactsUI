@@ -185,13 +185,13 @@
             <input type="text" class="form-control" id="occasionNameUpdate" name="occasionNameUpdate" [(ngModel)]="selectedOccasion.name"/>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="form-group">
               <label for="occasionDateUpdate">Date</label>
              <input type="date" class="form-control" id="occasionDateUpdate" name="occasionDateUpdate" [(ngModel)]="selectedOccasion.date"/>
           </div>
         </div>        
-        <div class="col-md-4">         
+        <div class="col-md-2">         
           <div class="form-group">
           <br>
           <label class="form-check-label">
@@ -199,16 +199,16 @@
           </label>
         </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-9"></div>
         <div class="col-md-3">
+           <div class="form-group">
+        <br>
         <button type="button" class="btn btn-warning float-right" style="margin-left:10px" (click)="onOccasionUpdateCancleClick()">
         <i class="fa fa-times" aria-hidden="true"> Cancel</i></button>
         <button type="button" class="btn btn-success float-right" (click)="onOccasionUpdateSaveClick()">
         <i class="fa fa-check" aria-hidden="true"> Save</i></button>
         </div>
-</div>
+        </div>
+      </div>      
 </form>
 </div>
 </div>
