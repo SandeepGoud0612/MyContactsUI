@@ -1,9 +1,9 @@
 import { Address } from './address';
 import { Occasion } from './occasion';
-import { Base } from './base';
 import { Image } from './image';
 
-export class Person extends Base{    
+export class Person {
+    id: number; 
     firstName: string;
     lastName: string;
     gender: string;

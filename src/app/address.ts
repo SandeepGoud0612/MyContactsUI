@@ -1,6 +1,4 @@
-import { Base } from './base';
-
-export class Address extends Base {
+export class Address {
     addressLine1: string;
     addressLine2: string;
     city: string;

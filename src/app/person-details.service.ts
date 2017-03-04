@@ -1,17 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable'
 import { Person } from './person';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 
 @Injectable()
 export class PersonDetailsService {
 
   personsUri: string = 'http://localhost:8080/persons';
 
+  private headers = new Headers({ 'Content-Type': 'application/json' });
+
   constructor(private http: Http) { }
 
   getPersonById(id: number): Observable<Person> {
     return this.http.get(this.personsUri + "/" + id)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
+  }
+
+  savePerson(id: number, selectedPerson: Person): Observable<Person> {
+    return this.http.put(this.personsUri + "/" + id, JSON.stringify(selectedPerson), { headers: this.headers })
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }

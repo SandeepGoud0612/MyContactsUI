@@ -38,6 +38,13 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     this.selectedPerson = JSON.parse(JSON.stringify(this.backupPerson));
   }
 
+  onPersonDetailsSaveClick(): void {
+     this.personDetailsService.savePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
+      this.selectedPerson = person; 
+      this.readonly = true;
+    });
+  }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

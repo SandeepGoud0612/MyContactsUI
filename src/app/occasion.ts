@@ -1,6 +1,5 @@
-import { Base } from './base';
-
-export class Occasion extends Base{  
+export class Occasion {  
+    id: number;
     name: string;
     date: Date;
     remindMe: boolean;

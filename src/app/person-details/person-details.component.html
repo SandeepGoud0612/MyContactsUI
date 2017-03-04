@@ -10,7 +10,7 @@
             <i class="fa fa-pencil" aria-hidden="true"> Update</i></button>                               
           <button type="button" class="btn btn-warning float-right glyphicon glyphicon-remove" style="margin-left:10px" *ngIf="!readonly" (click)="onPersonlDetailsUpdateCancleClick()">
             <i class="fa fa-times" aria-hidden="true"> Cancel</i></button>
-          <button type="button" class="btn btn-success float-right glyphicon glyphicon-ok" *ngIf="!readonly">
+          <button type="button" class="btn btn-success float-right glyphicon glyphicon-ok" *ngIf="!readonly" (click)="onPersonDetailsSaveClick()">
             <i class="fa fa-check" aria-hidden="true"> Save</i></button>
         </div>
         <div class="card-block">

@@ -1,6 +1,4 @@
-import { Base } from './base';
-
-export class Image extends Base{
+export class Image {
     image: any;
     tag: string;
 }
