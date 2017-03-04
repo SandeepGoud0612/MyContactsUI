@@ -16,6 +16,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   id: number;
   private sub: any;
   selectedPerson: Person;
+  backupPerson: Person;
   readonly: boolean = true;
 
   ngOnInit() {
@@ -29,6 +30,12 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
 
   onPersonalDetailsUpdateClick(): void {
       this.readonly = false;
+      this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));
+  }
+
+  onPersonlDetailsUpdateCancleClick(): void {
+    this.readonly = true;
+    this.selectedPerson = JSON.parse(JSON.stringify(this.backupPerson));
   }
 
   ngOnDestroy() {
