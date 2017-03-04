@@ -5,6 +5,15 @@
       <div class="card">
         <div class="card-header">
           Personal Details
+          <button type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+          </button>
+
+          <button type="button" class="btn btn-primary float-right" *ngIf="readonly" (click)="onPersonalDetailsUpdateClick()">
+                  Update <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            </button>                    
+          <button type="button" class="btn btn-warning float-right glyphicon glyphicon-remove" style="margin-left:10px" *ngIf="!readonly">Cancel</button>
+          <button type="button" class="btn btn-success float-right glyphicon glyphicon-ok" *ngIf="!readonly">Save</button>
         </div>
         <div class="card-block">
           <form *ngIf="selectedPerson">
@@ -13,19 +22,19 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="firstNameRead">First Name</label>
-                  <input type="text" class="form-control" id="firstNameRead" value="{{selectedPerson.firstName}}" disabled/>
+                  <input type="text" class="form-control" id="firstNameRead" value="{{selectedPerson.firstName}}" [disabled]="readonly" />
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="lastNameRead">Last Name</label>
-                  <input type="text" class="form-control" id="lastNameRead" value="{{selectedPerson.lastName}}" disabled />
+                  <input type="text" class="form-control" id="lastNameRead" value="{{selectedPerson.lastName}}" [disabled]="readonly" />
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="dobRead">DOB</label>
-                  <input type="text" class="form-control" id="dobRead" value="{{selectedPerson.dob}}" disabled/>
+                  <input type="text" class="form-control" id="dobRead" value="{{selectedPerson.dob}}" [disabled]="readonly"/>
                 </div>
               </div>
             </div>
@@ -34,7 +43,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="genderRead">Gender</label>
-                  <select class="form-control" id="exampleSelect2" value="{{selectedPerson.gender}}" disabled>
+                  <select class="form-control" id="exampleSelect2" value="{{selectedPerson.gender}}" [disabled]="readonly">
                     <option>Female</option>
                     <option>Male</option>      
                    </select>
@@ -43,7 +52,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="maritalStatusRead">Marital Status</label>
-                  <select class="form-control" id="maritalStatusRead" value="{{selectedPerson.maritalStatus}}" disabled>
+                  <select class="form-control" id="maritalStatusRead" value="{{selectedPerson.maritalStatus}}" [disabled]="readonly">
                     <option>Single</option>
                     <option>Married</option>      
                    </select>
@@ -52,7 +61,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="phoneNumberRead">Phone Number</label>
-                  <input type="text" class="form-control" id="phoneNumberRead" value="{{selectedPerson.phoneNumber}}" disabled/>
+                  <input type="text" class="form-control" id="phoneNumberRead" value="{{selectedPerson.phoneNumber}}" [disabled]="readonly"/>
                 </div>
               </div>
             </div>
@@ -61,19 +70,19 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="alternatePhoneNumberRead">Alternate Phone Number</label>
-                  <input type="text" class="form-control" id="alternatePhoneNumberRead" value="{{selectedPerson.alternatePhoneNumber}}" disabled/>
+                  <input type="text" class="form-control" id="alternatePhoneNumberRead" value="{{selectedPerson.alternatePhoneNumber}}" [disabled]="readonly"/>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="emailIdRead">EmailId</label>
-                  <input type="text" class="form-control" id="emailIdRead" value="{{selectedPerson.emailId}}" disabled/>
+                  <input type="text" class="form-control" id="emailIdRead" value="{{selectedPerson.emailId}}" [disabled]="readonly"/>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="alternateEmailIdRead">Alternate EmailId</label>
-                  <input type="text" class="form-control" id="alternateEmailIdRead" value="{{selectedPerson.alternateEmailId}}" disabled/>
+                  <input type="text" class="form-control" id="alternateEmailIdRead" value="{{selectedPerson.alternateEmailId}}" [disabled]="readonly"/>
                 </div>
               </div>
             </div>
@@ -135,14 +144,14 @@
 
   <br>
 
-  <div class="row foo">
+  <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
           Occasions
         </div>
         <div class="card-block" *ngIf="selectedPerson">
-           <table class="table table-bordered table-hover">
+          <table class="table table-bordered table-hover">
             <thead>
               <tr>
                 <th>#</th>
@@ -156,7 +165,7 @@
                 <td>{{occasion.id}}</td>
                 <td>{{occasion.name}}</td>
                 <td>{{occasion.date | date: 'MMM/dd/yyyy'}}</td>
-                <td>{{occasion.remindMe}}</td>              
+                <td>{{occasion.remindMe}}</td>
               </tr>
             </tbody>
           </table>

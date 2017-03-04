@@ -1,8 +1,9 @@
 import { Address } from './address';
 import { Occasion } from './occasion';
+import { Base } from './base';
+import { Image } from './image';
 
-export class Person {
-    id: number;
+export class Person extends Base{    
     firstName: string;
     lastName: string;
     gender: string;
@@ -14,5 +15,5 @@ export class Person {
     maritalStatus: boolean;
     addressList: Address[]; 
     occasionList: Occasion[];
-    image: any;
+    image: Image;
 }

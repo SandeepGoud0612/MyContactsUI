@@ -1,5 +1,6 @@
-export class Address {
-    id: number;
+import { Base } from './base';
+
+export class Address extends Base {
     addressLine1: string;
     addressLine2: string;
     city: string;

@@ -16,6 +16,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   id: number;
   private sub: any;
   selectedPerson: Person;
+  readonly: boolean = true;
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -24,6 +25,10 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     this.personDetailsService.getPersonById(this.id).subscribe(person => {
       this.selectedPerson = person; 
     });
+  }
+
+  onPersonalDetailsUpdateClick(): void {
+      this.readonly = false;
   }
 
   ngOnDestroy() {

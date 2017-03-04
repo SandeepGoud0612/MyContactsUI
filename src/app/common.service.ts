@@ -1,11 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Person } from './person';
 
-@Injectable()
-export class CommonService { 
+export class CommonService {
 
-   persons: Person[] = [];  
+    private static commonService: CommonService = new CommonService();
 
-   selectedPerson: Person;
+    persons: Person[] = [];
+
+    private constructor() {
+        alert('hi');
+     }
+
+    public static getInstance(): CommonService{
+        return this.commonService;
+    }
 
 }
