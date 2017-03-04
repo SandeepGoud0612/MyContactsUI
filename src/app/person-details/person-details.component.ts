@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { PersonDetailsService } from '../person-details.service';
 import { Person } from '../person';
+import { Occasion } from '../occasion';
 
 @Component({
   selector: 'app-person-details',
@@ -17,7 +18,9 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   private sub: any;
   selectedPerson: Person;
   backupPerson: Person;
-  readonly: boolean = true;
+  readonlyPersonalDetails: boolean = true;
+  readOnlyOccasion: boolean = true;
+  selectedOccasion: Occasion;
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -29,22 +32,39 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   }
 
   onPersonalDetailsUpdateClick(): void {
-      this.readonly = false;
+      this.readonlyPersonalDetails = false;
       this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));
   }
 
   onPersonlDetailsUpdateCancleClick(): void {
-    this.readonly = true;
+    this.readonlyPersonalDetails = true;
     this.selectedPerson = JSON.parse(JSON.stringify(this.backupPerson));
   }
 
   onPersonDetailsSaveClick(): void {
      this.personDetailsService.savePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.selectedPerson = person; 
-      this.readonly = true;
+      this.readonlyPersonalDetails = true;
     });
   }
 
+  onOccasionUpdateClick(occasion: Occasion): void {
+    this.selectedOccasion = occasion; 
+    this.readOnlyOccasion = false;
+  }
+
+  onOccasionDeleteClick(occasion: Occasion): void {
+
+  }
+
+  onOccasionUpdateCancleClick(): void {
+     this.readOnlyOccasion = true;
+  }
+
+  onOccasionUpdateSaveClick(): void {
+    this.readOnlyOccasion = true;
+  }
+ 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
