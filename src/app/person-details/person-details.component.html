@@ -13,43 +13,56 @@
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
-                <label for="firstNameRead">First Name</label>
+                <label for="firstNameRead">First Name<span class="text-danger"> *</span></label>
                 <input type="text" required class="form-control" id="firstNameRead" name="firstNameRead" #firstNameRead="ngModel" [(ngModel)]="selectedPerson.firstName"
                   [disabled]="readonlyPersonalDetails" />
                 <div *ngIf="firstNameRead.errors && (firstNameRead.dirty || firstNameRead.touched)" class="alert alert-danger">
                   <div [hidden]="!firstNameRead.errors.required">
-                    Name is required
+                    First name is required
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label for="lastNameRead">Last Name</label>
-                <input type="text" class="form-control" id="lastNameRead" name="lastNameRead" [(ngModel)]="selectedPerson.lastName" [disabled]="readonlyPersonalDetails"
-                />
+                <label for="lastNameRead">Last Name<span class="text-danger"> *</span></label>
+                <input type="text" required class="form-control" id="lastNameRead" name="lastNameRead" #lastNameRead="ngModel" [(ngModel)]="selectedPerson.lastName"
+                  [disabled]="readonlyPersonalDetails" />
+                <div *ngIf="lastNameRead.errors && (lastNameRead.dirty || lastNameRead.touched)" class="alert alert-danger">
+                  <div [hidden]="!lastNameRead.errors.required">
+                    Last name is required
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
                 <label for="dobRead">DOB</label>
-                <input type="date" class="form-control" id="dobRead" name="dobRead" [(ngModel)]="selectedPerson.dob" [disabled]="readonlyPersonalDetails"
-                />
+                <input type="date" class="form-control" id="dobRead" #dobRead="ngModel" name="dobRead" [(ngModel)]="selectedPerson.dob"
+                  [disabled]="readonlyPersonalDetails"/>
               </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                <label for="genderRead">Gender</label>
-                <select class="form-control" id="genderRead" name="genderRead" [(ngModel)]="selectedPerson.gender" [disabled]="readonlyPersonalDetails">
+                <label for="genderRead">Gender<span class="text-danger"> *</span></label>
+                <select class="form-control" required id="genderRead" name="genderRead" #genderRead="ngModel" [(ngModel)]="selectedPerson.gender"
+                  [disabled]="readonlyPersonalDetails">
+                    <option selected value>Select</option>
                     <option>Female</option>
                     <option>Male</option>      
-                   </select>
+                </select>
+                <div *ngIf="genderRead.errors && (genderRead.dirty || genderRead.touched)" class="alert alert-danger">
+                  <div [hidden]="!genderRead.errors.required">
+                    Gender is required
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
                 <label for="maritalStatusRead">Marital Status</label>
                 <select class="form-control" id="maritalStatusRead" name="maritalStatusRead" [(ngModel)]="selectedPerson.maritalStatus" [disabled]="readonlyPersonalDetails">
+                    <option selected>Select</option>
                     <option>Single</option>
                     <option>Married</option>      
                    </select>
@@ -59,23 +72,33 @@
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
-                <label for="phoneNumberRead">Phone Number</label>
-                <input type="tel" data-format="+1 (ddd) ddd-dddd" class="form-control" id="phoneNumberRead" name="phoneNumberRead" [(ngModel)]="selectedPerson.phoneNumber"
-                  [disabled]="readonlyPersonalDetails" />
+                <label for="phoneNumberRead">Phone Number<span class="text-danger"> *</span></label>
+                <input type="number" class="form-control" id="phoneNumberRead" name="phoneNumberRead" [(ngModel)]="selectedPerson.phoneNumber"
+                  [disabled]="readonlyPersonalDetails" required #phoneNumberRead="ngModel" />
+                <div *ngIf="phoneNumberRead.errors && (phoneNumberRead.dirty || phoneNumberRead.touched)" class="alert alert-danger">
+                  <div [hidden]="!phoneNumberRead.errors.required">
+                    Phone number is required
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
                 <label for="alternatePhoneNumberRead">Alternate Phone Number</label>
-                <input type="tel" data-format="+1 (ddd) ddd-dddd" class="form-control" id="alternatePhoneNumberRead" name="alternatePhoneNumberRead"
-                  [(ngModel)]="selectedPerson.alternatePhoneNumber" [disabled]="readonlyPersonalDetails" />
+                <input type="number" class="form-control" id="alternatePhoneNumberRead" name="alternatePhoneNumberRead" [(ngModel)]="selectedPerson.alternatePhoneNumber"
+                  [disabled]="readonlyPersonalDetails" />
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label for="emailIdRead">EmailId</label>
-                <input type="email" class="form-control" id="emailIdRead" name="emailIdRead" [(ngModel)]="selectedPerson.emailId" [disabled]="readonlyPersonalDetails"
-                />
+                <label for="emailIdRead">EmailId<span class="text-danger"> *</span></label>
+                <input type="email" required class="form-control" id="emailIdRead" name="emailIdRead" #emailIdRead="ngModel" [(ngModel)]="selectedPerson.emailId"
+                  [disabled]="readonlyPersonalDetails" />
+                <div *ngIf="emailIdRead.errors && (emailIdRead.dirty || emailIdRead.touched)" class="alert alert-danger">
+                  <div [hidden]="!emailIdRead.errors.required">
+                    EmailId is required
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-md-3">

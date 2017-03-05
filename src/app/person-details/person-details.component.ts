@@ -34,11 +34,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     this.personDetailsService.getPersonById(this.id).subscribe(person => {
       this.selectedPerson = person;
     });
-  }
-
-  onAllContactsClick(): void {
-    this.personService.getAllPersons().subscribe(persons => this.commonService.persons = persons);
-  }
+  }  
 
   onPersonalDetailsUpdateClick(): void {
     this.readonlyPersonalDetails = false;
@@ -53,8 +49,8 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   onPersonDetailsSaveClick(): void {
     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.selectedPerson = person;
-      this.readonlyPersonalDetails = true;
-      this.onAllContactsClick();
+      alert(this.selectedPerson.dob);
+      this.readonlyPersonalDetails = true;      
     });
   }
 
@@ -97,5 +93,13 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
+
+  parseDate(dateString: string): Date {
+    if (dateString) {
+        return new Date(dateString);
+    } else {
+        return null;
+    }
+}
 
 }
