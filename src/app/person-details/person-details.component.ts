@@ -61,7 +61,6 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     this.readOnlyOccasion = false;
     this.createOccasion = false;
     this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));
-    alert(occasion.date);
   }
 
   onOccasionDeleteClick(occasion: Occasion): void {
