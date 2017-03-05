@@ -3,13 +3,13 @@
     <div class="card">
       <div class="card-header">
         <div class="row">
-          <div class="col-md-10">Personal Details</div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-link float-right fa fa-pencil" *ngIf="readonlyPersonalDetails" (click)="onPersonalDetailsUpdateClick()"> Update</button>
-            <button type="button" class="btn btn-warning btn-link float-right btn-sm fa fa-times text-warning toggleLeft" *ngIf="!readonlyPersonalDetails"
+          <div class="col-md-9">Personal Details</div>
+          <div class="col-md-3">
+            <button class="btn btn-link fa fa-pencil float-right" *ngIf="readonlyPersonalDetails" (click)="onPersonalDetailsUpdateClick()"> Update</button>
+            <button class="btn btn-link fa fa-times text-warning float-right" *ngIf="!readonlyPersonalDetails"
               (click)="onPersonlDetailsUpdateCancleClick()"> Cancel</button>
-            <button type="button" class="btn btn-success btn-link float-right btn-sm fa fa-check text-success" *ngIf="!readonlyPersonalDetails"
-              (click)="onPersonDetailsSaveClick()"> Save</button></div>
+            <button class="btn btn-link fa fa-check text-success float-right" *ngIf="!readonlyPersonalDetails" (click)="onPersonDetailsSaveClick()"> Save</button>
+          </div>
         </div>
       </div>
       <div class="card-block">
