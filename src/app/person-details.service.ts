@@ -18,7 +18,7 @@ export class PersonDetailsService {
       .catch(this.handleError);
   }
 
-  savePerson(id: number, selectedPerson: Person): Observable<Person> {
+  updatePerson(id: number, selectedPerson: Person): Observable<Person> {
     return this.http.put(this.personsUri + "/" + id, JSON.stringify(selectedPerson), { headers: this.headers })
       .map((res: Response) => res.json())
       .catch(this.handleError);

@@ -22,6 +22,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   readonlyPersonalDetails: boolean = true;
   readOnlyOccasion: boolean = true;
   selectedOccasion: Occasion;
+  createOccasion: boolean = false;
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -43,7 +44,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   }
 
   onPersonDetailsSaveClick(): void {
-     this.personDetailsService.savePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
+     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.selectedPerson = person; 
       this.readonlyPersonalDetails = true;
     });
@@ -52,11 +53,12 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   onOccasionUpdateClick(occasion: Occasion): void {
     this.selectedOccasion = occasion; 
     this.readOnlyOccasion = false;
+    this.createOccasion = false;
   }
 
   onOccasionDeleteClick(occasion: Occasion): void {
     this.selectedPerson.occasionList = this.selectedPerson.occasionList.filter(occasionItem => occasion.id !== occasionItem.id);
-    this.personDetailsService.savePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
+    this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.selectedPerson = person;
       location.reload();  
     });   
@@ -67,10 +69,19 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   }
 
   onOccasionUpdateSaveClick(): void {
-     this.personDetailsService.savePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
+    if(this.createOccasion){
+      this.selectedPerson.occasionList.push(this.selectedOccasion);
+    }
+     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.selectedPerson = person; 
        this.readOnlyOccasion = true;
     });   
+  }
+
+  onCreateOccasionClick(): void {
+     this.readOnlyOccasion = false;
+     this.createOccasion = true;
+     this.selectedOccasion = new Occasion();
   }
  
   ngOnDestroy() {
