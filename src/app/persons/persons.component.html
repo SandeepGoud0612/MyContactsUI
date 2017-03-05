@@ -23,7 +23,6 @@
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>#</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Phone Number</th>
@@ -32,8 +31,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let person of commonService.persons">
-                                <td>{{person.id}}</td>
+                            <tr *ngFor="let person of commonService.persons">                                
                                 <td><a [routerLink]="['/person-details', person.id]">{{person.firstName}}</a></td>
                                 <td>{{person.lastName}}</td>
                                 <td>{{person.emailId}}</td>
