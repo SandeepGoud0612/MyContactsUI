@@ -1,20 +1,26 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card">
-      <div class="card-header bg-success text-white">
-        Personal Details
-        <button class="btn btn-link btn-sm fa fa-pencil float-right text-white" *ngIf="readonlyPersonalDetails" (click)="onPersonalDetailsUpdateClick()"> Update</button>
-        <button class="btn btn-link btn-sm fa fa-times text-white float-right" *ngIf="!readonlyPersonalDetails" (click)="onPersonlDetailsUpdateCancleClick()"> Cancel</button>
-        <button class="btn btn-link btn-sm fa fa-check float-right text-white" *ngIf="!readonlyPersonalDetails" (click)="onPersonDetailsSaveClick()"> Save</button>
-      </div>
-      <div class="card-block">
-        <form *ngIf="selectedPerson">
+      <form *ngIf="selectedPerson" #personalDetailsForm="ngForm">
+        <div class="card-header bg-success text-white">
+          Personal Details
+          <button class="btn btn-link btn-sm fa fa-pencil float-right text-white" *ngIf="readonlyPersonalDetails" (click)="onPersonalDetailsUpdateClick()"> Update</button>
+          <button class="btn btn-link btn-sm fa fa-times text-white float-right" *ngIf="!readonlyPersonalDetails" (click)="onPersonlDetailsUpdateCancleClick()"> Cancel</button>
+          <button class="btn btn-link btn-sm fa fa-check float-right text-white" [disabled]="!personalDetailsForm.form.valid" *ngIf="!readonlyPersonalDetails"
+            (click)="onPersonDetailsSaveClick()"> Save</button>
+        </div>
+        <div class="card-block">
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
                 <label for="firstNameRead">First Name</label>
-                <input type="text" class="form-control" id="firstNameRead" name="firstNameRead" [(ngModel)]="selectedPerson.firstName" [disabled]="readonlyPersonalDetails"
-                />
+                <input type="text" required class="form-control" id="firstNameRead" name="firstNameRead" #firstNameRead="ngModel" [(ngModel)]="selectedPerson.firstName"
+                  [disabled]="readonlyPersonalDetails" />
+                <div *ngIf="firstNameRead.errors && (firstNameRead.dirty || firstNameRead.touched)" class="alert alert-danger">
+                  <div [hidden]="!firstNameRead.errors.required">
+                    Name is required
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-md-3">
@@ -80,8 +86,8 @@
               </div>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
@@ -131,7 +137,8 @@
         Occasions
         <button type="button" class="btn btn-link btn-sm float-right fa fa-plus text-white" aria-hidden="true" *ngIf="readOnlyOccasion"
           (click)="onOccasionCreateClick()"> Create</button>
-        <button type="button" *ngIf="!readOnlyOccasion" class="btn btn-link btn-sm float-right fa fa-times toggleLeft text-white" (click)="onOccasionUpdateCancleClick()"> Cancel</button>
+        <button type="button" *ngIf="!readOnlyOccasion" class="btn btn-link btn-sm float-right fa fa-times toggleLeft text-white"
+          (click)="onOccasionUpdateCancleClick()"> Cancel</button>
         <button type="button" *ngIf="!readOnlyOccasion" class="btn btn-link btn-sm float-right fa fa-check text-white" (click)="onOccasionUpdateSaveClick()"> Save</button>
       </div>
       <div class="card-block" *ngIf="selectedPerson">
@@ -163,7 +170,8 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="occasionNameUpdate">Name</label>
-                    <input type="text" class="form-control" id="occasionNameUpdate" name="occasionNameUpdate" [(ngModel)]="selectedOccasion.name" />
+                    <input type="text" class="form-control" id="occasionNameUpdate" name="occasionNameUpdate" [(ngModel)]="selectedOccasion.name"
+                    />
                   </div>
                 </div>
                 <div class="col-md-3">
@@ -180,7 +188,7 @@
                                <input class="form-check-input" type="checkbox" id="occasionRemindMeUpdate" name="occasionRemindMeUpdate" [(ngModel)]="selectedOccasion.remindMe"> Remind Me
                     </label>
                   </div>
-                </div>                
+                </div>
               </div>
             </form>
           </div>

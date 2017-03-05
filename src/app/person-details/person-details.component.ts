@@ -25,6 +25,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   readOnlyOccasion: boolean = true;
   selectedOccasion: Occasion;
   createOccasion: boolean = false;
+  active = true;
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
