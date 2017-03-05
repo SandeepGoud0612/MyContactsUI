@@ -10,12 +10,14 @@ import { PersonsComponent } from './persons/persons.component';
 import { PersonDetailsComponent } from './person-details/person-details.component';
 import { PersonsService } from './persons.service';
 import { PersonDetailsService } from './person-details.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,    
     PersonsComponent,
-    PersonDetailsComponent
+    PersonDetailsComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
