@@ -165,18 +165,18 @@
           <tbody *ngIf="selectedPerson.occasionList">
             <tr *ngFor="let occasion of selectedPerson.occasionList">
               <td style="width:25%">{{occasion.name}}</td>
-<td style="width:25%">{{occasion.date | date: 'MMM/dd/yyyy'}}</td>
-<td style="width:25%">{{occasion.remindMe}}</td>
-<td style="width:10%"><button type="button" class="btn btn-primary btn-sm" aria-hidden="true" *ngIf="readOnlyOccasion" (click)="onOccasionUpdateClick(occasion)">
-            <i class="fa fa-pencil" aria-hidden="true"> Update</i></button></td>
-<td style="width:10%"><button type="button" class="btn btn-danger btn-sm" aria-hidden="true" *ngIf="readOnlyOccasion" (click)="onOccasionDeleteClick(occasion)">
-            <i class="fa fa-trash" aria-hidden="true"> Delete</i></button></td>
-</tr>
-</tbody>
-</table>
-<div class="card" *ngIf="!readOnlyOccasion">
-  <div class="card-block">
-    <form>
+              <td style="width:25%">{{occasion.date | date: 'MMM/dd/yyyy'}}</td>
+              <td style="width:25%">{{occasion.remindMe}}</td>
+              <td style="width:10%"><button type="button" class="btn btn-primary btn-sm" aria-hidden="true" *ngIf="readOnlyOccasion" (click)="onOccasionUpdateClick(occasion)">
+                                    <i class="fa fa-pencil" aria-hidden="true"> Update</i></button></td>
+              <td style="width:10%"><button type="button" class="btn btn-danger btn-sm" aria-hidden="true" *ngIf="readOnlyOccasion" (click)="onOccasionDeleteClick(occasion)">
+                                    <i class="fa fa-trash" aria-hidden="true"> Delete</i></button></td>
+          </tr>
+        </tbody>
+      </table>
+    <div class="card" *ngIf="!readOnlyOccasion">
+      <div class="card-block">
+        <form>
 
       <div class="row">
         <div class="col-md-4">

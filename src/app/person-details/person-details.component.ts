@@ -4,6 +4,7 @@ import 'rxjs/add/operator/switchMap';
 import { PersonDetailsService } from '../person-details.service';
 import { Person } from '../person';
 import { Occasion } from '../occasion';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-person-details',
@@ -12,7 +13,7 @@ import { Occasion } from '../occasion';
 })
 export class PersonDetailsComponent implements OnInit, OnDestroy {
 
-  constructor(private route: ActivatedRoute, private personDetailsService: PersonDetailsService) { }
+  constructor(private route: ActivatedRoute, private personDetailsService: PersonDetailsService, private router: Router) { }
 
   id: number;
   private sub: any;
@@ -56,11 +57,12 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   onOccasionDeleteClick(occasion: Occasion): void {
     this.selectedPerson.occasionList = this.selectedPerson.occasionList.filter(occasionItem => occasion.id !== occasionItem.id);
     this.personDetailsService.savePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
-      this.selectedPerson = person;       
-    }); 
+      this.selectedPerson = person;
+      location.reload();  
+    });   
   }
 
-  onOccasionUpdateCancleClick(): void {
+  onOccasionUpdateCancleClick(): void {   
      this.readOnlyOccasion = true;
   }
 
