@@ -1,19 +1,8 @@
 <div class="container-fluid">
 
-    <div class="row">
+    <div class="row">       
 
-        <div class="col-md-6">
-            <div class="card h-100">
-                <div class="card-header">
-                    Remainders
-                </div>
-                <div class="card-block">
-                    
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     Search Criteria
@@ -21,7 +10,7 @@
                 <div class="card-block">
                     <form>                      
                         <div class="form-group row" id="btn-form">
-                            <button type="button" class="btn btn-primary" (click)="getAllPersons()">Search</button>
+                            <button type="button" class="btn btn-primary btn-sm fa fa-search" (click)="getAllPersons()"> Search</button>
                         </div>
                     </form>
                 </div>
@@ -51,7 +40,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let person of persons">
+                            <tr *ngFor="let person of commonService.persons">
                                 <td>{{person.id}}</td>
                                 <td><a [routerLink]="['/person-details', person.id]">{{person.firstName}}</a></td>
                                 <td>{{person.lastName}}</td>

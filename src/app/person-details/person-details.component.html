@@ -1,16 +1,20 @@
 <div class="container-fluid">
 
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          Personal Details
-          <button type="button" class="btn btn-primary float-right" aria-hidden="true" *ngIf="readonlyPersonalDetails" (click)="onPersonalDetailsUpdateClick()">
-            <i class="fa fa-pencil" aria-hidden="true"> Update</i></button>
-          <button type="button" class="btn btn-warning float-right" style="margin-left:10px" *ngIf="!readonlyPersonalDetails" (click)="onPersonlDetailsUpdateCancleClick()">
-              <i class="fa fa-times" aria-hidden="true"> Cancel</i></button>
-          <button type="button" class="btn btn-success float-right" *ngIf="!readonlyPersonalDetails" (click)="onPersonDetailsSaveClick()">
-            <i class="fa fa-check" aria-hidden="true"> Save</i></button>
+          <div class="row">
+            <div class="col-md-5">Personal Details</div>
+            <div class="col-md-5"><a [routerLink]="['/persons']" (click)="onAllContactsClick()">All Contacts</a></div>
+            <div class="col-md-2">              
+              <button type="button" class="btn btn-primary float-right btn-sm fa fa-pencil" aria-hidden="true" *ngIf="readonlyPersonalDetails"
+                                    (click)="onPersonalDetailsUpdateClick()"> Update</button>
+              <button type="button" class="btn btn-warning float-right btn-sm fa fa-times"  style="margin-left:10px" *ngIf="!readonlyPersonalDetails" 
+                                    (click)="onPersonlDetailsUpdateCancleClick()"> Cancel</button>
+              <button type="button" class="btn btn-success float-right btn-sm fa fa-check" *ngIf="!readonlyPersonalDetails" 
+                                    (click)="onPersonDetailsSaveClick()"> Save</button></div>
+</div>
 </div>
 <div class="card-block">
   <form *ngIf="selectedPerson">
@@ -33,7 +37,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="dobRead">DOB</label>
-          <input type="date" class="form-control" id="dobRead" name="dobRead" [(ngModel)]="selectedPerson.dob" [disabled]="readonlyPersonalDetails"/>
+          <input type="date" class="form-control" id="dobRead" name="dobRead" [(ngModel)]="selectedPerson.dob" [disabled]="readonlyPersonalDetails" />
         </div>
       </div>
     </div>
@@ -94,17 +98,6 @@
 </div>
 </div>
 </div>
-
-<div class="col-md-3">
-  <div class="card">
-    <div class="card-header">
-      Image
-    </div>
-    <div class="card-block" *ngIf="selectedPerson">
-      <img *ngIf="selectedPerson.image" class="img-fluid" alt="Responsive image">
-    </div>
-  </div>
-</div>
 </div>
 
 <br>
@@ -150,8 +143,8 @@
     <div class="card">
       <div class="card-header">
         Occasions
-        <button type="button" class="btn btn-primary float-right" aria-hidden="true" *ngIf="readOnlyOccasion" (click)="onCreateOccasionClick()">
-                                    <i class="fa fa-pencil" aria-hidden="true"> Create</i></button>
+        <button type="button" class="btn btn-primary float-right btn-sm fa fa-plus" aria-hidden="true" *ngIf="readOnlyOccasion" (click)="onCreateOccasionClick()">
+                                   Create</button>
       </div>
       <div class="card-block" *ngIf="selectedPerson">
         <table class="table table-bordered table-hover" *ngIf="readOnlyOccasion">
@@ -167,50 +160,52 @@
           <tbody *ngIf="selectedPerson.occasionList">
             <tr *ngFor="let occasion of selectedPerson.occasionList">
               <td style="width:25%">{{occasion.name}}</td>
-              <td style="width:25%">{{occasion.date | date: 'MMM/dd/yyyy'}}</td>
-              <td style="width:25%">{{occasion.remindMe}}</td>
-              <td style="width:10%"><button type="button" class="btn btn-primary btn-sm" aria-hidden="true" *ngIf="readOnlyOccasion" (click)="onOccasionUpdateClick(occasion)">
-                                    <i class="fa fa-pencil" aria-hidden="true"> Update</i></button></td>
-              <td style="width:10%"><button type="button" class="btn btn-danger btn-sm" aria-hidden="true" *ngIf="readOnlyOccasion" (click)="onOccasionDeleteClick(occasion)">
-                                    <i class="fa fa-trash" aria-hidden="true"> Delete</i></button></td>
-          </tr>
-        </tbody>
-      </table>
-    <div class="card" *ngIf="!readOnlyOccasion">
-      <div class="card-block">
-        <form>
+<td style="width:25%">{{occasion.date | date: 'MMM/dd/yyyy'}}</td>
+<td style="width:25%">{{occasion.remindMe}}</td>
+<td style="width:10%"><button type="button" class="btn btn-primary btn-sm fa fa-pencil" aria-hidden="true" *ngIf="readOnlyOccasion" 
+                  (click)="onOccasionUpdateClick(occasion)"> Update</button></td>
+<td style="width:10%"><button type="button" class="btn btn-danger btn-sm fa fa-trash" aria-hidden="true" *ngIf="readOnlyOccasion" 
+                  (click)="onOccasionDeleteClick(occasion)"> Delete</button></td>
+</tr>
+</tbody>
+</table>
+<div class="card" *ngIf="!readOnlyOccasion">
+  <div class="card-block">
+    <form>
 
       <div class="row">
         <div class="col-md-4">
-           <div class="form-group">
+          <div class="form-group">
             <label for="occasionNameUpdate">Name</label>
-            <input type="text" class="form-control" id="occasionNameUpdate" name="occasionNameUpdate" [(ngModel)]="selectedOccasion.name"/>
+            <input type="text" class="form-control" id="occasionNameUpdate" name="occasionNameUpdate" [(ngModel)]="selectedOccasion.name"
+            />
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
-              <label for="occasionDateUpdate">Date</label>
-             <input type="date" class="form-control" id="occasionDateUpdate" name="occasionDateUpdate" [(ngModel)]="selectedOccasion.date"/>
+            <label for="occasionDateUpdate">Date</label>
+            <input type="date" class="form-control" id="occasionDateUpdate" name="occasionDateUpdate" [(ngModel)]="selectedOccasion.date"
+            />
           </div>
-        </div>        
-        <div class="col-md-2">         
+        </div>
+        <div class="col-md-2">
           <div class="form-group">
-          <br>
-          <label class="form-check-label">
+            <br>
+            <label class="form-check-label">
             <input class="form-check-input" type="checkbox" id="occasionRemindMeUpdate" name="occasionRemindMeUpdate" [(ngModel)]="selectedOccasion.remindMe"> Remind Me
           </label>
-        </div>
+          </div>
         </div>
         <div class="col-md-3">
-           <div class="form-group">
-        <br>
-        <button type="button" class="btn btn-warning float-right" style="margin-left:10px" (click)="onOccasionUpdateCancleClick()">
-        <i class="fa fa-times" aria-hidden="true"> Cancel</i></button>
-        <button type="button" class="btn btn-success float-right" (click)="onOccasionUpdateSaveClick()">
-        <i class="fa fa-check" aria-hidden="true"> Save</i></button>
-        </div>
-        </div>
-      </div>      
+          <div class="form-group">
+            <br>
+            <button type="button" class="btn btn-warning float-right btn-sm fa fa-times" style="margin-left:10px" 
+            (click)="onOccasionUpdateCancleClick()"> Cancel</button>
+            <button type="button" class="btn btn-success float-right btn-sm fa fa-check" 
+            (click)="onOccasionUpdateSaveClick()"> Save</button>
+</div>
+</div>
+</div>
 </form>
 </div>
 </div>

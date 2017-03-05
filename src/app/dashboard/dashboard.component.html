@@ -1,17 +1,24 @@
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">  
-    
-    <a class="navbar-brand" href="#"><h3> My Contacts</h3></a>
 
-    <div class="collapse navbar-collapse">        
-    </div>
 
-    <span class="navbar-text">
-       <a class="nav-link" href="">Home</a>
-    </span>
-</nav>
+<br>
 
 <div class="container-fluid">
-    <div class="main-body">
-        <router-outlet></router-outlet>       
+    <div class="col-md-12">
+        <div class="card h-100">
+            <div class="card-header">
+                Remainders
+                <a class="float-right" [routerLink]="['/persons']">Contacts</a>
+            </div>
+            <div class="card-block">
+                <ul class="list-group">
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li>
+                    <li class="list-group-item list-group-item-info">Cras sit amet nibh libero</li>
+                    <li class="list-group-item list-group-item-warning">Porta ac consectetur ac</li>
+                    <li class="list-group-item list-group-item-danger">Vestibulum at eros</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
+
