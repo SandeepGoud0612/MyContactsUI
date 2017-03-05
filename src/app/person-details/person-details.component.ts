@@ -31,17 +31,17 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
       this.id = +params['id'];
     });
     this.personDetailsService.getPersonById(this.id).subscribe(person => {
-      this.selectedPerson = person; 
+      this.selectedPerson = person;
     });
   }
 
   onAllContactsClick(): void {
-     this.personService.getAllPersons().subscribe(persons => this.commonService.persons = persons);
+    this.personService.getAllPersons().subscribe(persons => this.commonService.persons = persons);
   }
 
   onPersonalDetailsUpdateClick(): void {
-      this.readonlyPersonalDetails = false;
-      this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));
+    this.readonlyPersonalDetails = false;
+    this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));
   }
 
   onPersonlDetailsUpdateCancleClick(): void {
@@ -50,15 +50,15 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   }
 
   onPersonDetailsSaveClick(): void {
-     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
-      this.selectedPerson = person; 
+    this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
+      this.selectedPerson = person;
       this.readonlyPersonalDetails = true;
       this.onAllContactsClick();
     });
   }
 
   onOccasionUpdateClick(occasion: Occasion): void {
-    this.selectedOccasion = occasion; 
+    this.selectedOccasion = occasion;
     this.readOnlyOccasion = false;
     this.createOccasion = false;
   }
@@ -66,31 +66,32 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   onOccasionDeleteClick(occasion: Occasion): void {
     this.selectedPerson.occasionList = this.selectedPerson.occasionList.filter(occasionItem => occasion.id !== occasionItem.id);
     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
-      this.selectedPerson = person;
-      location.reload();  
-    });   
+      this.personDetailsService.getPersonById(this.id).subscribe(person => {
+        this.selectedPerson = person;
+      });
+    });
   }
 
-  onOccasionUpdateCancleClick(): void {   
-     this.readOnlyOccasion = true;
+  onOccasionUpdateCancleClick(): void {
+    this.readOnlyOccasion = true;
   }
 
   onOccasionUpdateSaveClick(): void {
-    if(this.createOccasion){
+    if (this.createOccasion) {
       this.selectedPerson.occasionList.push(this.selectedOccasion);
     }
-     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
-      this.selectedPerson = person; 
-       this.readOnlyOccasion = true;
-    });   
+    this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
+      this.selectedPerson = person;
+      this.readOnlyOccasion = true;
+    });
   }
 
   onCreateOccasionClick(): void {
-     this.readOnlyOccasion = false;
-     this.createOccasion = true;
-     this.selectedOccasion = new Occasion();
+    this.readOnlyOccasion = false;
+    this.createOccasion = true;
+    this.selectedOccasion = new Occasion();
   }
- 
+
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
