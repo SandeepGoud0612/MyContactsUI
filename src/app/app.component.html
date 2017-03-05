@@ -1,20 +1,20 @@
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-
-    <a class="navbar-brand" href="/dashboard">
-        <h3> My Contacts</h3>
-    </a>
-
-    <div class="collapse navbar-collapse">
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-4">
+                <a class="nav-link" href="">
+                    <h3>My Contacts</h3>
+                </a>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <br>
+                <a class="float-right toggleLeft fa fa-address-book-o" [routerLink]="['/persons']"> Contacts</a>
+                <a class="float-right fa fa-home" [routerLink]="['/dashboard']"> Dashboard</a>
+            </div>
+        </div>
     </div>
-
-    <span class="navbar-text">
-       <a class="nav-link" href="">Dashboard</a>
-    </span>
-
-</nav>
-
-<div class="container-fluid">
-    <div class="main-body">
+    <div class="card-block">
         <router-outlet></router-outlet>
     </div>
 </div>

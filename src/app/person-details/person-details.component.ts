@@ -53,6 +53,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
      this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.selectedPerson = person; 
       this.readonlyPersonalDetails = true;
+      this.onAllContactsClick();
     });
   }
 
