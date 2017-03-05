@@ -39,7 +39,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
 
   onPersonalDetailsUpdateClick(): void {
     this.readonlyPersonalDetails = false;
-    this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));
+    this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));   
   }
 
   onPersonlDetailsUpdateCancleClick(): void {
@@ -50,7 +50,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   onPersonDetailsSaveClick(): void {
     alert(this.selectedPerson.dob);
     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
-      this.selectedPerson = person;     
+      this.selectedPerson = person;
       this.readonlyPersonalDetails = true;
       this.ngOnInit();
     });
