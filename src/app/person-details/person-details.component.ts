@@ -86,10 +86,11 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  onCreateOccasionClick(): void {
+  onOccasionCreateClick(): void {
     this.readOnlyOccasion = false;
     this.createOccasion = true;
     this.selectedOccasion = new Occasion();
+    this.selectedOccasion.remindMe = true;
   }
 
   ngOnDestroy() {

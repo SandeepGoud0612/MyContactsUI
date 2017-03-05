@@ -130,7 +130,7 @@
       <div class="card-header bg-success text-white">
         Occasions
         <button type="button" class="btn btn-link btn-sm float-right fa fa-plus text-white" aria-hidden="true" *ngIf="readOnlyOccasion"
-          (click)="onCreateOccasionClick()"> Create</button>
+          (click)="onOccasionCreateClick()"> Create</button>
         <button type="button" *ngIf="!readOnlyOccasion" class="btn btn-link btn-sm float-right fa fa-times toggleLeft text-white" (click)="onOccasionUpdateCancleClick()"> Cancel</button>
         <button type="button" *ngIf="!readOnlyOccasion" class="btn btn-link btn-sm float-right fa fa-check text-white" (click)="onOccasionUpdateSaveClick()"> Save</button>
       </div>
@@ -178,15 +178,9 @@
                     <br>
                     <label class="form-check-label">
                                <input class="form-check-input" type="checkbox" id="occasionRemindMeUpdate" name="occasionRemindMeUpdate" [(ngModel)]="selectedOccasion.remindMe"> Remind Me
-                         </label>
+                    </label>
                   </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <br>
-
-                  </div>
-                </div>
+                </div>                
               </div>
             </form>
           </div>
