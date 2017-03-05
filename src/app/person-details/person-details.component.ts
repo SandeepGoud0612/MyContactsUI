@@ -21,6 +21,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   private sub: any;
   selectedPerson: Person;
   backupPerson: Person;
+  backupOccasion: Occasion;
   readonlyPersonalDetails: boolean = true;
   readOnlyOccasion: boolean = true;
   selectedOccasion: Occasion;
@@ -34,7 +35,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     this.personDetailsService.getPersonById(this.id).subscribe(person => {
       this.selectedPerson = person;
     });
-  }  
+  }
 
   onPersonalDetailsUpdateClick(): void {
     this.readonlyPersonalDetails = false;
@@ -49,8 +50,8 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   onPersonDetailsSaveClick(): void {
     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.selectedPerson = person;
-      alert(this.selectedPerson.dob);
-      this.readonlyPersonalDetails = true;      
+      //alert(this.selectedPerson.dob);
+      this.readonlyPersonalDetails = true;
     });
   }
 
@@ -58,6 +59,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     this.selectedOccasion = occasion;
     this.readOnlyOccasion = false;
     this.createOccasion = false;
+    this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));
   }
 
   onOccasionDeleteClick(occasion: Occasion): void {
@@ -70,7 +72,8 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   }
 
   onOccasionUpdateCancleClick(): void {
-    this.readOnlyOccasion = true;
+    this.readOnlyOccasion = true;   
+    this.selectedPerson = JSON.parse(JSON.stringify(this.backupPerson));  
   }
 
   onOccasionUpdateSaveClick(): void {
@@ -96,10 +99,10 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
 
   parseDate(dateString: string): Date {
     if (dateString) {
-        return new Date(dateString);
+      return new Date(dateString);
     } else {
-        return null;
+      return null;
     }
-}
+  }
 
 }

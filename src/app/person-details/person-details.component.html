@@ -38,8 +38,8 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label for="dobRead">DOB</label>
-                <input type="date" class="form-control" id="dobRead" #dobRead="ngModel" name="dobRead" [(ngModel)]="selectedPerson.dob"
-                  [disabled]="readonlyPersonalDetails"/>
+                <input type="date" class="form-control" id="dobRead" #dobRead="ngModel" name="dobRead" [(ngModel)]="selectedPerson.dob" [disabled]="readonlyPersonalDetails"
+                />
               </div>
             </div>
             <div class="col-md-2">
@@ -156,52 +156,63 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card">
-      <div class="card-header bg-success text-white">
-        Occasions
-        <button type="button" class="btn btn-link btn-sm float-right fa fa-plus text-white" aria-hidden="true" *ngIf="readOnlyOccasion"
-          (click)="onOccasionCreateClick()"> Create</button>
-        <button type="button" *ngIf="!readOnlyOccasion" class="btn btn-link btn-sm float-right fa fa-times toggleLeft text-white"
-          (click)="onOccasionUpdateCancleClick()"> Cancel</button>
-        <button type="button" *ngIf="!readOnlyOccasion" class="btn btn-link btn-sm float-right fa fa-check text-white" (click)="onOccasionUpdateSaveClick()"> Save</button>
-      </div>
-      <div class="card-block" *ngIf="selectedPerson">
-        <table class="table table-bordered table-hover table-sm" *ngIf="readOnlyOccasion">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Date</th>
-              <th>RemindMe</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody *ngIf="selectedPerson.occasionList">
-            <tr *ngFor="let occasion of selectedPerson.occasionList">
-              <td class="width25">{{occasion.name}}</td>
-              <td class="width25">{{occasion.date | date: 'MMM/dd/yyyy'}}</td>
-              <td class="width25">{{occasion.remindMe}}</td>
-              <td class="width10"><button type="button" class="btn btn-link fa fa-pencil" aria-hidden="true" *ngIf="readOnlyOccasion" (click)="onOccasionUpdateClick(occasion)"> Update</button></td>
-              <td class="width10"><button type="button" class="btn btn-link fa fa-trash text-danger" aria-hidden="true" *ngIf="readOnlyOccasion"
-                  (click)="onOccasionDeleteClick(occasion)"> Delete</button></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="card" *ngIf="!readOnlyOccasion">
-          <div class="card-block">
-            <form>
+      <form #occasionForm="ngForm">
+        <div class="card-header bg-success text-white">
+          Occasions
+          <button type="button" class="btn btn-link btn-sm float-right fa fa-plus text-white" aria-hidden="true" *ngIf="readOnlyOccasion"
+            (click)="onOccasionCreateClick()"> Create</button>
+          <button type="button" *ngIf="!readOnlyOccasion" class="btn btn-link btn-sm float-right fa fa-times toggleLeft text-white"
+            (click)="onOccasionUpdateCancleClick()"> Cancel</button>
+          <button type="button" [disabled]="!occasionForm.form.valid" *ngIf="!readOnlyOccasion" class="btn btn-link btn-sm float-right fa fa-check text-white"
+            (click)="onOccasionUpdateSaveClick()"> Save</button>
+        </div>
+        <div class="card-block" *ngIf="selectedPerson">
+          <table class="table table-bordered table-hover table-sm" *ngIf="readOnlyOccasion">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>RemindMe</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="selectedPerson.occasionList">
+              <tr *ngFor="let occasion of selectedPerson.occasionList">
+                <td class="width25">{{occasion.name}}</td>
+                <td class="width25">{{occasion.date | date: 'MMM/dd/yyyy'}}</td>
+                <td class="width25">{{occasion.remindMe}}</td>
+                <td class="width10"><button type="button" class="btn btn-link fa fa-pencil" aria-hidden="true" *ngIf="readOnlyOccasion" (click)="onOccasionUpdateClick(occasion)"> Update</button></td>
+                <td class="width10"><button type="button" class="btn btn-link fa fa-trash text-danger" aria-hidden="true" *ngIf="readOnlyOccasion"
+                    (click)="onOccasionDeleteClick(occasion)"> Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="card" *ngIf="!readOnlyOccasion">
+            <div class="card-block">
               <div class="row">
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="occasionNameUpdate">Name</label>
-                    <input type="text" class="form-control" id="occasionNameUpdate" name="occasionNameUpdate" [(ngModel)]="selectedOccasion.name"
-                    />
+                    <input type="text" class="form-control" required id="occasionNameUpdate" name="occasionNameUpdate" #occasionNameUpdate="ngModel"
+                      [(ngModel)]="selectedOccasion.name" />
+                    <div *ngIf="occasionNameUpdate.errors && (occasionNameUpdate.dirty || occasionNameUpdate.touched)" class="alert alert-danger">
+                      <div [hidden]="!occasionNameUpdate.errors.required">
+                        Name is required
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="occasionDateUpdate">Date</label>
-                    <input type="date" class="form-control" id="occasionDateUpdate" name="occasionDateUpdate" [(ngModel)]="selectedOccasion.date"
-                    />
+                    <input type="date" required class="form-control" id="occasionDateUpdate" name="occasionDateUpdate" #occasionDateUpdate="ngModel"
+                      [(ngModel)]="selectedOccasion.date" />
+                    <div *ngIf="occasionDateUpdate.errors && (occasionDateUpdate.dirty || occasionDateUpdate.touched)" class="alert alert-danger">
+                      <div [hidden]="!occasionDateUpdate.errors.required">
+                        Date is required
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-2">
@@ -213,10 +224,10 @@
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>
