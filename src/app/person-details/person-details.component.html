@@ -151,7 +151,7 @@
                 <td>{{address.state}}</td>
                 <td>{{address.country}}</td>
                 <td>{{address.zipCode}}</td>
-                <td class="width10"><button type="button" class="btn btn-link fa fa-pencil" aria-hidden="true" *ngIf="readOnlyAddress" (click)="onAddressUpdateClick(address)"> Update</button></td>
+                <td class="width10"><button type="button" class="btn btn-link fa fa-pencil text-success" aria-hidden="true" *ngIf="readOnlyAddress" (click)="onAddressUpdateClick(address)"> Update</button></td>
                 <td class="width10"><button type="button" class="btn btn-link fa fa-trash text-danger" aria-hidden="true" *ngIf="readOnlyAddress"
                     (click)="onAddressDeleteClick(address)"> Delete</button></td>
               </tr>
@@ -273,7 +273,7 @@
                 <td class="width25">{{occasion.name}}</td>
                 <td class="width25">{{occasion.date | date: 'MMM/dd/yyyy'}}</td>
                 <td class="width25">{{occasion.remindMe}}</td>
-                <td class="width10"><button type="button" class="btn btn-link fa fa-pencil" aria-hidden="true" *ngIf="readOnlyOccasion" (click)="onOccasionUpdateClick(occasion)"> Update</button></td>
+                <td class="width10"><button type="button" class="btn btn-link fa fa-pencil text-success" aria-hidden="true" *ngIf="readOnlyOccasion" (click)="onOccasionUpdateClick(occasion)"> Update</button></td>
                 <td class="width10"><button type="button" class="btn btn-link fa fa-trash text-danger" aria-hidden="true" *ngIf="readOnlyOccasion"
                     (click)="onOccasionDeleteClick(occasion)"> Delete</button></td>
               </tr>
