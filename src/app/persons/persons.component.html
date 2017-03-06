@@ -1,46 +1,62 @@
-    <div class="row">    
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header bg-success text-white">
-                    Search Criteria
-                    <button type="button" class="btn btn-link btn-sm fa fa-search float-right text-white" (click)="getAllPersons()"> Search</button> 
-                </div>
-                <div class="card-block">                   
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                Search Criteria
+                <button type="button" class="btn btn-link btn-sm fa fa-search float-right text-white" (click)="getAllPersonsBySearchCriteria()"> Search</button>
+            </div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="firstNameSearch">First Name</label>
+                        <input type="text" class="form-control" id="firstNameSearch" name="firstNameSearch" [(ngModel)]="personSearchCriteria.firstName"
+                        />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="lastNameRead">Last Name</label>
+                        <input type="text" class="form-control" id="lastNameRead" name="lastNameRead" [(ngModel)]="personSearchCriteria.lastName"
+                        />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="emailIdRead">EmailId</label>
+                        <input type="email" class="form-control" id="emailIdRead" name="emailIdRead" [(ngModel)]="personSearchCriteria.emailId" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <br>
+<br>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header bg-success text-white">
-                    Contact List
-                </div>
-                <div class="card-block">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Phone Number</th>
-                                <th>Email Id</th>
-                                <th>Birthday</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let person of commonService.persons">                                
-                                <td><a [routerLink]="['/person-details', person.id]">{{person.firstName}}</a></td>
-                                <td>{{person.lastName}}</td>
-                                <td>{{person.emailId}}</td>
-                                <td>{{person.phoneNumber}}</td>
-                                <td>{{person.dob | date: 'MMM/dd/yyyy'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                Contact List
+            </div>
+            <div class="card-block">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Phone Number</th>
+                            <th>Email Id</th>
+                            <th>Birthday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let person of commonService.persons">
+                            <td><a [routerLink]="['/person-details', person.id]">{{person.firstName}}</a></td>
+                            <td>{{person.lastName}}</td>
+                            <td>{{person.emailId}}</td>
+                            <td>{{person.phoneNumber}}</td>
+                            <td>{{person.dob | date: 'MMM/dd/yyyy'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+</div>
