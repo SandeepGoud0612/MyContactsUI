@@ -7,6 +7,7 @@ import { Occasion } from '../occasion';
 import { Router } from '@angular/router';
 import { CommonService } from '../common.service';
 import { PersonsService } from '../persons.service';
+import {Address} from '../address';
 
 @Component({
   selector: 'app-person-details',
@@ -27,6 +28,10 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   selectedOccasion: Occasion;
   createOccasion: boolean = false;
   active = true;
+   readOnlyAddress: boolean = true;
+  selectedAddress: Address;
+  createAddress: boolean =false;
+
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -55,6 +60,40 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
       this.ngOnInit();
     });
   }
+  onAddressUpdateClick(address: Address): void {
+  this.selectedAddress = address;
+  this.readOnlyAddress = false;
+  this.createAddress = false;
+}
+
+onAddressDeleteClick(address: Address): void {
+  this.selectedPerson.addressList = this.selectedPerson.addressList.filter(addressItem => address.id !== addressItem.id);
+  this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person =>{
+    this.personDetailsService.getPersonById(this.id).subscribe(person => {
+      this.selectedPerson = person;
+    });
+  });
+}
+
+onAddressUpdateSaveClick(): void{
+  if(this.createAddress){
+    this.selectedPerson.addressList.push(this.selectedAddress);
+  }
+  this.personDetailsService.updatePerson(this.selectedPerson.id,this.selectedPerson).subscribe(Person =>{
+    this.selectedPerson = Person;
+    this.readOnlyAddress=true;
+  });
+}
+
+  onAddressUpdateCancleClick(): void {
+    this.readOnlyAddress = true;
+  }
+
+ onAddressCreateClick(): void {
+    this.readOnlyAddress = false;
+    this.createAddress = true;
+    this.selectedAddress = new Address();
+    }
 
   onOccasionUpdateClick(occasion: Occasion): void {
     this.selectedOccasion = occasion;
