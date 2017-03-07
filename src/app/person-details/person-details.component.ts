@@ -72,6 +72,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
       this.readonlyPersonalDetails = true;
       this.createPerson = false;     
       this.active = true;
+      this.commonService.persons.push(this.selectedPerson);
       this.router.navigate(['/person-details', this.selectedPerson.id]);
     });
   }
