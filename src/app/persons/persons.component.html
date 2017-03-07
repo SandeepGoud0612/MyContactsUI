@@ -34,6 +34,7 @@
         <div class="card">
             <div class="card-header bg-success text-white">
                 Contact List
+                <button type="button" class="btn btn-link btn-sm fa fa-plus float-right text-white" [routerLink]="['/person-details/create']"> Create</button>
             </div>
             <div class="card-block">
                 <table class="table table-bordered table-hover">
@@ -43,16 +44,19 @@
                             <th>Last Name</th>
                             <th>Phone Number</th>
                             <th>Email Id</th>
-                            <th>Birthday</th>
+                            <th>DOB</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let person of commonService.persons">
-                            <td><a [routerLink]="['/person-details', person.id]">{{person.firstName}}</a></td>
-                            <td>{{person.lastName}}</td>
-                            <td>{{person.emailId}}</td>
-                            <td>{{person.phoneNumber}}</td>
-                            <td>{{person.dob | date: 'MMM/dd/yyyy'}}</td>
+                            <td class="width20"><a [routerLink]="['/person-details', person.id]">{{person.firstName}}</a></td>
+                            <td class="width20">{{person.lastName}}</td>
+                            <td class="width20">{{person.emailId}}</td>
+                            <td class="width20">{{person.phoneNumber}}</td>
+                            <td class="width5">{{person.dob | date: 'MMM/dd/yyyy'}}</td>
+                            <td class="width5"><button type="button" class="btn btn-link fa fa-trash text-danger" aria-hidden="true"
+                                    (click)="deletePerson(person)"> Delete</button></td>
                         </tr>
                     </tbody>
                 </table>

@@ -19,12 +19,18 @@ export class PersonsComponent implements OnInit {
   ngOnInit() {
   }
 
-   getAllPersonsBySearchCriteria(): void {
+  getAllPersonsBySearchCriteria(): void {
     this.personService.getAllPersonsBySearchCriteria(this.personSearchCriteria).subscribe(persons => this.commonService.persons = persons);
   }
 
   getAllPersons(): void {
     this.personService.getAllPersons().subscribe(persons => this.commonService.persons = persons);
+  }
+
+  deletePerson(personDelete: Person): void {    
+    this.personService.deletePerson(personDelete.id).subscribe(() => {
+      this.commonService.persons = this.commonService.persons.filter(person => personDelete.id !== person.id);
+    });
   }
 
 }
