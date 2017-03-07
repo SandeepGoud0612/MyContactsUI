@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="card">
       <form #personalDetailsForm="ngForm" *ngIf="active">
-        <div class="card-header bg-success text-white">
+        <div class="card-header bg-info text-white">
           Personal Details
           <button class="btn btn-link btn-sm fa fa-pencil float-right text-white" *ngIf="readonlyPersonalDetails && !createPerson" (click)="onPersonalDetailsUpdateClick()"> Update</button>
            <button class="btn btn-link btn-sm fa fa-check float-right text-white" *ngIf="createPerson" (click)="onPersonDetailsCreateSaveClick()"> Save</button>
@@ -122,7 +122,7 @@
   <div class="col-md-12">
     <div class="card">
       <form #addressForm="ngForm">
-        <div class="card-header bg-success text-white">
+        <div class="card-header bg-info text-white">
           Address
           <button type="button" class="btn btn-link btn-sm float-right fa fa-plus text-white" aria-hidden="true" *ngIf="readOnlyAddress"
             (click)="onAddressCreateClick()"> Create</button>
@@ -251,7 +251,7 @@
   <div class="col-md-12">
     <div class="card">
       <form #occasionForm="ngForm">
-        <div class="card-header bg-success text-white">
+        <div class="card-header bg-info text-white">
           Occasions
           <button type="button" class="btn btn-link btn-sm float-right fa fa-plus text-white" aria-hidden="true" *ngIf="readOnlyOccasion"
             (click)="onOccasionCreateClick()"> Create</button>
