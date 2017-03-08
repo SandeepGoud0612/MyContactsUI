@@ -7,7 +7,7 @@ import { Occasion } from '../occasion';
 import { Router } from '@angular/router';
 import { CommonService } from '../common.service';
 import { PersonsService } from '../persons.service';
-import {Address} from '../address';
+import { Address } from '../address';
 
 @Component({
   selector: 'app-person-details',
@@ -28,23 +28,29 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   selectedOccasion: Occasion;
   createOccasion: boolean = false;
   active = true;
-   readOnlyAddress: boolean = true;
+  readOnlyAddress: boolean = true;
   selectedAddress: Address;
-  createAddress: boolean =false;
+  createAddress: boolean = false;
+  createPerson: boolean = false;
 
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
-    this.personDetailsService.getPersonById(this.id).subscribe(person => {
-      this.selectedPerson = person;
-    });
+    if (this.id) {
+      this.personDetailsService.getPersonById(this.id).subscribe(person => {
+        this.selectedPerson = person;
+      });
+    } else {
+      this.createPerson = true;
+      this.selectedPerson = new Person();
+    }
   }
 
   onPersonalDetailsUpdateClick(): void {
     this.readonlyPersonalDetails = false;
-    this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));   
+    this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));
   }
 
   onPersonlDetailsUpdateCancleClick(): void {
@@ -52,48 +58,62 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     this.selectedPerson = JSON.parse(JSON.stringify(this.backupPerson));
   }
 
-  onPersonDetailsSaveClick(): void {
-    alert(this.selectedPerson.dob);
+  onPersonDetailsUpdateSaveClick(): void {
     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.selectedPerson = person;
       this.readonlyPersonalDetails = true;
       this.ngOnInit();
     });
   }
-  onAddressUpdateClick(address: Address): void {
-  this.selectedAddress = address;
-  this.readOnlyAddress = false;
-  this.createAddress = false;
-}
 
-onAddressDeleteClick(address: Address): void {
-  this.selectedPerson.addressList = this.selectedPerson.addressList.filter(addressItem => address.id !== addressItem.id);
-  this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person =>{
-    this.personDetailsService.getPersonById(this.id).subscribe(person => {
+ onPersonDetailsCreateSaveClick(): void {
+    this.personDetailsService.createPerson(this.selectedPerson).subscribe(person => {
       this.selectedPerson = person;
+      this.readonlyPersonalDetails = true;
+      this.createPerson = false;     
+      this.active = true;
+      this.commonService.persons.push(this.selectedPerson);
+      this.router.navigate(['/person-details', this.selectedPerson.id]);
     });
-  });
-}
-
-onAddressUpdateSaveClick(): void{
-  if(this.createAddress){
-    this.selectedPerson.addressList.push(this.selectedAddress);
   }
-  this.personDetailsService.updatePerson(this.selectedPerson.id,this.selectedPerson).subscribe(Person =>{
-    this.selectedPerson = Person;
-    this.readOnlyAddress=true;
-  });
-}
+
+  onAddressUpdateClick(address: Address): void {
+    this.selectedAddress = address;
+    this.readOnlyAddress = false;
+    this.createAddress = false;
+    this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));
+  }
+
+  onAddressDeleteClick(address: Address): void {
+    this.selectedPerson.addressList = this.selectedPerson.addressList.filter(addressItem => address.id !== addressItem.id);
+    this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
+      this.personDetailsService.getPersonById(this.id).subscribe(person => {
+        this.selectedPerson = person;
+        
+      });
+    });
+  }
+
+  onAddressUpdateSaveClick(): void {
+    if (this.createAddress) {
+      this.selectedPerson.addressList.push(this.selectedAddress);
+    }
+    this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(Person => {
+      this.selectedPerson = Person;
+      this.readOnlyAddress = true;
+    });
+  }
 
   onAddressUpdateCancleClick(): void {
     this.readOnlyAddress = true;
+    this.selectedPerson = JSON.parse(JSON.stringify(this.backupPerson));
   }
 
- onAddressCreateClick(): void {
+  onAddressCreateClick(): void {
     this.readOnlyAddress = false;
     this.createAddress = true;
     this.selectedAddress = new Address();
-    }
+  }
 
   onOccasionUpdateClick(occasion: Occasion): void {
     this.selectedOccasion = occasion;

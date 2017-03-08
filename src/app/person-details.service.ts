@@ -24,6 +24,12 @@ export class PersonDetailsService {
       .catch(this.handleError);
   }
 
+  createPerson(selectedPerson: Person): Observable<Person> {
+    return this.http.post(this.personsUri, JSON.stringify(selectedPerson), { headers: this.headers })
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
+  }
+
   private handleError(error: any) {
     let errMsg = (error.message) ? error.message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg);
