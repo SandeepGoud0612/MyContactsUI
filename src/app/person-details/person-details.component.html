@@ -331,9 +331,9 @@
                   <div class="form-group">
                     <label for="occasionNameUpdate">Name</label>
                     <input type="text" class="form-control" required id="occasionNameUpdate" name="occasionNameUpdate" #occasionNameUpdate="ngModel"
-                      [(ngModel)]="selectedOccasion.name" />
+                      [(ngModel)]="selectedOccasion.name" maxlength="100"/>
                     <div *ngIf="occasionNameUpdate.errors && (occasionNameUpdate.dirty || occasionNameUpdate.touched)" class="alert alert-danger">
-                      <div [hidden]="!occasionNameUpdate.errors.required">
+                      <div [hidden]="!occasionNameUpdate.errors.required" >
                         Name is required
                       </div>
                     </div>
