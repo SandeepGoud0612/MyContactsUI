@@ -104,6 +104,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
 
   onAddressUpdateCancleClick(): void {
     this.readOnlyAddress = true;
+    this.createAddress = false;
   }
 
   onAddressCreateClick(): void {
@@ -130,6 +131,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
 
   onOccasionUpdateCancleClick(): void {
     this.readOnlyOccasion = true;
+    this.createOccasion = false;
     this.selectedPerson = JSON.parse(JSON.stringify(this.backupPerson));
   }
 

@@ -5,7 +5,7 @@
         <div class="card-header bg-info text-white">
           Personal Details
           <button class="btn btn-link btn-sm fa fa-pencil float-right text-white" *ngIf="readonlyPersonalDetails && !createPerson"
-            (click)="onPersonalDetailsUpdateClick()"> Update</button>
+            (click)="onPersonalDetailsUpdateClick()" [disabled]="createAddress || !readOnlyAddress || createOccasion || !readOnlyOccasion"> Update</button>
           <button class="btn btn-link btn-sm fa fa-check float-right text-white" *ngIf="createPerson" (click)="onPersonDetailsCreateSaveClick()"> Save</button>
           <button class="btn btn-link btn-sm fa fa-times text-white float-right" *ngIf="!readonlyPersonalDetails" (click)="onPersonlDetailsUpdateCancleClick()"> Cancel</button>
           <button class="btn btn-link btn-sm fa fa-check float-right text-white" [disabled]="!personalDetailsForm.form.valid" *ngIf="!readonlyPersonalDetails"
@@ -164,7 +164,7 @@
         <div class="card-header bg-info text-white">
           Address
           <button type="button" class="btn btn-link btn-sm float-right fa fa-plus text-white" aria-hidden="true" *ngIf="readOnlyAddress"
-            (click)="onAddressCreateClick()"> Create</button>
+            (click)="onAddressCreateClick()" [disabled]="!readonlyPersonalDetails || createOccasion || !readOnlyOccasion"> Create</button>
           <button type="button" *ngIf="!readOnlyAddress" class="btn btn-link btn-sm float-right fa fa-times toggleLeft text-white"
             (click)="onAddressUpdateCancleClick()"> Cancel</button>
           <button type="button" *ngIf="!readOnlyAddress" class="btn btn-link btn-sm float-right fa fa-check text-white" (click)="onAddressUpdateSaveClick()"
@@ -193,9 +193,9 @@
                 <td>{{address.country}}</td>
                 <td>{{address.zipCode}}</td>
                 <td class="width10"><button type="button" class="btn btn-link fa fa-pencil text-success" aria-hidden="true" *ngIf="readOnlyAddress"
-                    (click)="onAddressUpdateClick(address)"> Update</button></td>
+                    (click)="onAddressUpdateClick(address)" [disabled]="!readonlyPersonalDetails || createOccasion || !readOnlyOccasion"> Update</button></td>
                 <td class="width10"><button type="button" class="btn btn-link fa fa-trash text-danger" aria-hidden="true" *ngIf="readOnlyAddress"
-                    (click)="onAddressDeleteClick(address)"> Delete</button></td>
+                    (click)="onAddressDeleteClick(address)" [disabled]="!readonlyPersonalDetails || createOccasion || !readOnlyOccasion"> Delete</button></td>
               </tr>
             </tbody>
           </table>
@@ -293,7 +293,7 @@
         <div class="card-header bg-info text-white">
           Occasions
           <button type="button" class="btn btn-link btn-sm float-right fa fa-plus text-white" aria-hidden="true" *ngIf="readOnlyOccasion"
-            (click)="onOccasionCreateClick()"> Create</button>
+            (click)="onOccasionCreateClick()" [disabled]="!readonlyPersonalDetails || createAddress || !readOnlyAddress"> Create</button>
           <button type="button" *ngIf="!readOnlyOccasion" class="btn btn-link btn-sm float-right fa fa-times toggleLeft text-white"
             (click)="onOccasionUpdateCancleClick()"> Cancel</button>
           <button type="button" [disabled]="!occasionForm.form.valid" *ngIf="!readOnlyOccasion" class="btn btn-link btn-sm float-right fa fa-check text-white"
@@ -316,9 +316,9 @@
                 <td class="width25">{{occasion.date | date: 'MMM/dd/yyyy'}}</td>
                 <td class="width25">{{occasion.remindMe}}</td>
                 <td class="width10"><button type="button" class="btn btn-link fa fa-pencil text-success" aria-hidden="true" *ngIf="readOnlyOccasion"
-                    (click)="onOccasionUpdateClick(occasion)"> Update</button></td>
+                    (click)="onOccasionUpdateClick(occasion)" [disabled]="!readonlyPersonalDetails || createAddress || !readOnlyAddress"> Update</button></td>
                 <td class="width10"><button type="button" class="btn btn-link fa fa-trash text-danger" aria-hidden="true" *ngIf="readOnlyOccasion"
-                    (click)="onOccasionDeleteClick(occasion)"> Delete</button></td>
+                    (click)="onOccasionDeleteClick(occasion)" [disabled]="!readonlyPersonalDetails || createAddress || !readOnlyAddress"> Delete</button></td>
               </tr>
             </tbody>
           </table>
