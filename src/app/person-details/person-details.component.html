@@ -207,10 +207,10 @@
                   <div class="form-group">
                     <label for="AddressLine1Update">Address Line 1<span class="text-danger"> *</span></label>
                     <input type="text" class="form-control" id="AddressLine1Update" name="AddressLine1Update" #AddressLine1Update="ngModel" [(ngModel)]="selectedAddress.addressLine1"
-                      required />
+                      required maxlength="100" />
                     <div *ngIf="AddressLine1Update.errors && (AddressLine1Update.dirty || AddressLine1Update.touched)" class="alert alert-danger">
                       <div [hidden]="!AddressLine1Update.errors.required">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Line-1 is required</i>
+                        Address Line 1 is required
                       </div>
                     </div>
                   </div>
@@ -219,17 +219,17 @@
                   <div class="form-group">
                     <label for="AddressLine2Update">address Line 2</label>
                     <input type="text" class="form-control" id="AddressLine2Update" name="AddressLine2Update" [(ngModel)]="selectedAddress.addressLine2"
-                    />
+                      maxlength="100" />
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="CityUpdate">City<span class="text-danger"> *</span></label>
                     <input type="text" class="form-control" id="CityUpdate" name="CityUpdate" #CityUpdate="ngModel" [(ngModel)]="selectedAddress.city"
-                      required />
+                      required maxlength="100" />
                     <div *ngIf="CityUpdate.errors && (CityUpdate.dirty || CityUpdate.touched)" class="alert alert-danger">
                       <div [hidden]="!CityUpdate.errors.required">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> City is required</i>
+                        City is required
                       </div>
                     </div>
                   </div>
@@ -238,10 +238,10 @@
                   <div class="form-group">
                     <label for="Stateupdate">State<span class="text-danger"> *</span></label>
                     <input type="text" class="form-control" id="Stateupdate" name="Stateupdate" #Stateupdate="ngModel" [(ngModel)]="selectedAddress.state"
-                      required />
+                      required maxlength="100" />
                     <div *ngIf="Stateupdate.errors && (Stateupdate.dirty || Stateupdate.touched)" class="alert alert-danger">
                       <div [hidden]="!Stateupdate.errors.required">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> State is required</i>
+                        State is required
                       </div>
                     </div>
 
@@ -251,10 +251,10 @@
                   <div class="form-group">
                     <label for="CountryUpdate">Country<span class="text-danger"> *</span></label>
                     <input type="text" class="form-control" id="CountryUpdate" name="CountryUpdate" #CountryUpdate="ngModel" [(ngModel)]="selectedAddress.country"
-                      required />
+                      required maxlength="100" />
                     <div *ngIf="CountryUpdate.errors && (CountryUpdate.dirty || CountryUpdate.touched)" class="alert alert-danger">
                       <div [hidden]="!CountryUpdate.errors.required">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Country is required</i>
+                        Country is required
                       </div>
                     </div>
 
@@ -263,18 +263,20 @@
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="ZipcodeUpdate">ZipCode<span class="text-danger"> *</span></label>
-                    <input type="number" class="form-control" id="ZipcodeUpdate" name="ZipcodeUpdate" #ZipcodeUpdate="ngModel" [(ngModel)]="selectedAddress.zipCode"
-                      required />
+                    <input type="text" class="form-control" id="ZipcodeUpdate" name="ZipcodeUpdate" #ZipcodeUpdate="ngModel" [(ngModel)]="selectedAddress.zipCode"
+                      required pattern="(\d{5}([\-]\d{4})?)" maxlength="10"/>
                     <div *ngIf="ZipcodeUpdate.errors && (ZipcodeUpdate.dirty || ZipcodeUpdate.touched)" class="alert alert-danger">
                       <div [hidden]="!ZipcodeUpdate.errors.required">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Zip is required</i>
+                        Zip is required
+                      </div>
+                      <div [hidden]="!ZipcodeUpdate.errors.pattern">
+                        Invalid ZipCode
                       </div>
                     </div>
 
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
