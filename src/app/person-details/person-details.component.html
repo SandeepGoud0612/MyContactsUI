@@ -3,7 +3,7 @@
     <div class="card">
       <form #personalDetailsForm="ngForm" *ngIf="active">
         <div class="card-header bg-info text-white">
-          <strong>Person Details</strong>
+          Personal Details
           <button class="btn btn-link btn-sm fa fa-pencil float-right text-white" *ngIf="readonlyPersonalDetails && !createPerson"
             (click)="onPersonalDetailsUpdateClick()"> Update</button>
           <button class="btn btn-link btn-sm fa fa-check float-right text-white" *ngIf="createPerson" (click)="onPersonDetailsCreateSaveClick()"> Save</button>
@@ -13,44 +13,39 @@
         </div>
         <div class="card-block">
           <div class="row">
+
             <div class="col-md-3">
               <div class="form-group">
                 <label for="firstNameRead">First Name<span class="text-danger"> *</span></label>
-                <input type="text" required class="form-control" id="firstNameRead" name="firstNameRead" #firstNameRead="ngModel" minlength="5"
-                  maxlength="30" pattern="[A-Za-z]" [(ngModel)]="selectedPerson.firstName" [disabled]="readonlyPersonalDetails && !createPerson"
-                />
-                <div *ngIf="firstNameRead.errors && (firstNameRead.dirty || firstNameRead.touched)" class="alert alert-danger" id="alert-box">
+                <input type="text" required class="form-control" id="firstNameRead" name="firstNameRead" #firstNameRead="ngModel" [(ngModel)]="selectedPerson.firstName"
+                  [disabled]="readonlyPersonalDetails && !createPerson" maxlength="50" />
+                <div *ngIf="firstNameRead.errors && (firstNameRead.dirty || firstNameRead.touched)" class="alert alert-danger">
                   <div [hidden]="!firstNameRead.errors.required">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"> First name is required</i>
-                  </div>
-                  <div [hidden]="!firstNameRead.errors.minlength">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"> Min Character Lenght is 5</i>
+                    First name is required
                   </div>
                   <div [hidden]="!firstNameRead.errors.maxlength">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"> Max Character Lenght is 30</i>
+                    Max Character Lenght is 50
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="col-md-3">
               <div class="form-group">
                 <label for="lastNameRead">Last Name<span class="text-danger"> *</span></label>
-                <input type="text" required class="form-control" id="lastNameRead" name="lastNameRead" #lastNameRead="ngModel" minlength="4"
-                  maxlength="30" pattern="[A-Za-z]" [(ngModel)]="selectedPerson.lastName" [disabled]="readonlyPersonalDetails && !createPerson"
-                />
-                <div *ngIf="lastNameRead.errors && (lastNameRead.dirty || lastNameRead.touched)" class="alert alert-danger" id="alert-box">
+                <input type="text" required class="form-control" id="lastNameRead" name="lastNameRead" #lastNameRead="ngModel" [(ngModel)]="selectedPerson.lastName"
+                  [disabled]="readonlyPersonalDetails && !createPerson" maxlength="50" />
+                <div *ngIf="lastNameRead.errors && (lastNameRead.dirty || lastNameRead.touched)" class="alert alert-danger">
                   <div [hidden]="!lastNameRead.errors.required">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"> First name is required</i>
-                  </div>
-                  <div [hidden]="!lastNameRead.errors.minlength">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"> Min Character Lenght is 5</i>
+                    Last name is required
                   </div>
                   <div [hidden]="!lastNameRead.errors.maxlength">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"> Max Character Lenght is 30</i>
+                    Max Character Lenght is 50
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="col-md-2">
               <div class="form-group">
                 <label for="dobRead">DOB</label>
@@ -58,80 +53,102 @@
                 />
               </div>
             </div>
+
             <div class="col-md-2">
               <div class="form-group">
                 <label for="genderRead">Gender<span class="text-danger"> *</span></label>
                 <select class="form-control" required id="genderRead" name="genderRead" #genderRead="ngModel" [(ngModel)]="selectedPerson.gender"
                   [disabled]="readonlyPersonalDetails && !createPerson">
-                    <option selected disabled value>Select</option>
+                    <option selected value>Select</option>
                     <option>Female</option>
                     <option>Male</option>      
                 </select>
-                <div *ngIf="genderRead.errors && (genderRead.dirty || genderRead.touched)" class="alert alert-danger" id="alert-box">
+                <div *ngIf="genderRead.errors && (genderRead.dirty || genderRead.touched)" class="alert alert-danger">
                   <div [hidden]="!genderRead.errors.required">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"> Gender is required</i>
+                    Gender is required
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="col-md-2">
               <div class="form-group">
                 <label for="maritalStatusRead">Marital Status</label>
                 <select class="form-control" id="maritalStatusRead" name="maritalStatusRead" [(ngModel)]="selectedPerson.maritalStatus" [disabled]="readonlyPersonalDetails && !createPerson">
-                    <option selected disabled>Select</option>
+                    <option selected>Select</option>
                     <option>Single</option>
                     <option>Married</option>      
                    </select>
               </div>
             </div>
+
           </div>
+
           <div class="row">
+
             <div class="col-md-3">
               <div class="form-group">
-                <label for="phoneNumberRead">Phone Number<span class="text-danger"> *</span><span class="little">999-999-9999</span></label>
+                <label for="phoneNumberRead">Phone Number<span class="text-danger"> *</span></label>
                 <input type="tel" class="form-control" id="phoneNumberRead" name="phoneNumberRead" [(ngModel)]="selectedPerson.phoneNumber"
-                  [disabled]="readonlyPersonalDetails && !createPerson" required #phoneNumberRead="ngModel" minlength="12"
-                  maxlength="12" pattern="\d{3}[\-]\d{3}[\-]\d{4}" />
-                <div *ngIf="phoneNumberRead.errors && (phoneNumberRead.dirty || phoneNumberRead.touched)" class="alert alert-danger" id="alert-box">
+                  [disabled]="readonlyPersonalDetails && !createPerson" required #phoneNumberRead="ngModel" minlength="8" maxlength="12"
+                />
+                <div *ngIf="phoneNumberRead.errors && (phoneNumberRead.dirty || phoneNumberRead.touched)" class="alert alert-danger">
                   <div [hidden]="!phoneNumberRead.errors.required">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"> Phone number is required</i>
+                    Phone number is required
                   </div>
-                  <div [hidden]="!phoneNumberRead.errors.pattern">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"> Enter Vaild Phone Format</i>
+                  <div [hidden]="!phoneNumberRead.errors.minlength">
+                    Invalid phone number
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="col-md-3">
               <div class="form-group">
                 <label for="alternatePhoneNumberRead">Alternate Phone Number</label>
                 <input type="tel" class="form-control" id="alternatePhoneNumberRead" name="alternatePhoneNumberRead" [(ngModel)]="selectedPerson.alternatePhoneNumber"
-                  [disabled]="readonlyPersonalDetails && !createPerson" pattern="\d{3}[\-]\d{3}[\-]\d{4}"/>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="emailIdRead">EmailId<span class="text-danger"> *</span><span class="little">xx@example.com</span></label>
-                <input type="email" required class="form-control" id="emailIdRead" name="emailIdRead" #emailIdRead="ngModel" [(ngModel)]="selectedPerson.emailId"
-                  [disabled]="readonlyPersonalDetails && !createPerson" pattern="[^ @]*@[^ @]*" />
-                <div *ngIf="emailIdRead.errors && (emailIdRead.dirty || emailIdRead.touched )" class="alert alert-danger" id="alert-box">
-                  <div [hidden]="!emailIdRead.errors.required">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"> EmailId is required</i>
-                  </div>
-                  <div [hidden]="!emailIdRead.errors.pattern">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"> Enter Vaild EmailId</i>
+                  [disabled]="readonlyPersonalDetails && !createPerson" minlength="8" maxlength="12" #alternatePhoneNumberRead="ngModel"
+                />
+                <div *ngIf="alternatePhoneNumberRead.errors && (alternatePhoneNumberRead.dirty || alternatePhoneNumberRead.touched)" class="alert alert-danger">
+                  <div [hidden]="!alternatePhoneNumberRead.errors.minlength">
+                    Invalid phone number
                   </div>
                 </div>
               </div>
             </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="emailIdRead">EmailId<span class="text-danger"> *</span></label>
+                <input type="email" required class="form-control" id="emailIdRead" name="emailIdRead" #emailIdRead="ngModel" [(ngModel)]="selectedPerson.emailId"
+                  [disabled]="readonlyPersonalDetails && !createPerson" pattern="[^ @]*@[^ @]*" />
+                <div *ngIf="emailIdRead.errors && (emailIdRead.dirty || emailIdRead.touched)" class="alert alert-danger">
+                  <div [hidden]="!emailIdRead.errors.required">
+                    EmailId is required
+                  </div>
+                  <div [hidden]="!emailIdRead.errors.pattern">
+                    Invaild EmailId
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="col-md-3">
               <div class="form-group">
                 <label for="alternateEmailIdRead">Alternate EmailId</label>
                 <input type="email" class="form-control" id="alternateEmailIdRead" name="alternateEmailIdRead" [(ngModel)]="selectedPerson.alternateEmailId"
-                  [disabled]="readonlyPersonalDetails && !createPerson" pattern="[^ @]*@[^ @]*" />
+                  [disabled]="readonlyPersonalDetails && !createPerson" pattern="[^ @]*@[^ @]*" #alternateEmailIdRead="ngModel"
+                />
+                <div *ngIf="alternateEmailIdRead.errors && (alternateEmailIdRead.dirty || alternateEmailIdRead.touched)" class="alert alert-danger">
+                  <div [hidden]="!alternateEmailIdRead.errors.pattern">
+                    Invaild EmailId
+                  </div>
+                </div>
               </div>
             </div>
+
           </div>
+
         </div>
       </form>
     </div>
@@ -145,13 +162,13 @@
     <div class="card">
       <form #addressForm="ngForm">
         <div class="card-header bg-info text-white">
-          <strong>Address Details</strong>
+          Address
           <button type="button" class="btn btn-link btn-sm float-right fa fa-plus text-white" aria-hidden="true" *ngIf="readOnlyAddress"
-            (click)="onAddressCreateClick()"> <strong> Create</strong></button>
+            (click)="onAddressCreateClick()"> Create</button>
           <button type="button" *ngIf="!readOnlyAddress" class="btn btn-link btn-sm float-right fa fa-times toggleLeft text-white"
-            (click)="onAddressUpdateCancleClick()"><strong> Cancel</strong></button>
+            (click)="onAddressUpdateCancleClick()"> Cancel</button>
           <button type="button" *ngIf="!readOnlyAddress" class="btn btn-link btn-sm float-right fa fa-check text-white" (click)="onAddressUpdateSaveClick()"
-            [disabled]="!addressForm.form.valid"><strong> Save</strong></button>
+            [disabled]="!addressForm.form.valid"> Save</button>
         </div>
         <div class="card-block" *ngIf="selectedPerson">
           <table class="table table-bordered table-hover table-sm" *ngIf="readOnlyAddress">
@@ -182,19 +199,6 @@
               </tr>
             </tbody>
           </table>
-          
-          <div class="alert alert-warning" role="alert" id="delete-alert" *ngIf="deleteAddress">
-            <div class="float-left">
-  <strong>Warning!</strong> You are deleting a record.
-            </div>
-            <div class="float-right ">
-            <button type="button" class="btn btn-secondary btn-sm button-right" (click)="onAddressConfirmDeleteClick()">Confirm</button>
-           <button type="button" class="btn btn-secondary btn-sm button-right" (click)="onAlertCancleClick()
-()">Cancel</button>
-            </div>
-</div>
-        
-        
           <div class="card" *ngIf="!readOnlyAddress">
             <div class="card-block">
 
@@ -203,38 +207,29 @@
                   <div class="form-group">
                     <label for="AddressLine1Update">Address Line 1<span class="text-danger"> *</span></label>
                     <input type="text" class="form-control" id="AddressLine1Update" name="AddressLine1Update" #AddressLine1Update="ngModel" [(ngModel)]="selectedAddress.addressLine1"
-                      required minlength="5" maxlength="100" />
-                    <div *ngIf="AddressLine1Update.errors && (AddressLine1Update.dirty || AddressLine1Update.touched)" class="alert alert-danger" id="alert-box">
+                      required />
+                    <div *ngIf="AddressLine1Update.errors && (AddressLine1Update.dirty || AddressLine1Update.touched)" class="alert alert-danger">
                       <div [hidden]="!AddressLine1Update.errors.required">
                         <i class="fa fa-exclamation-triangle" aria-hidden="true"> Line-1 is required</i>
-                      </div>
-                      <div [hidden]="!AddressLine1Update.errors.minlength">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Enter Valid Address</i>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="form-group">
-                    <label for="AddressLine2Update">Address Line 2</label>
-                    <input type="text" class="form-control" id="AddressLine2Update" name="AddressLine2Update" minlength="5" maxlength="100" [(ngModel)]="selectedAddress.addressLine2"
+                    <label for="AddressLine2Update">address Line 2</label>
+                    <input type="text" class="form-control" id="AddressLine2Update" name="AddressLine2Update" [(ngModel)]="selectedAddress.addressLine2"
                     />
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="CityUpdate">City<span class="text-danger"> *</span></label>
-                    <input type="text" class="form-control" id="CityUpdate" name="CityUpdate" minlength="4" maxlength="15" #CityUpdate="ngModel"
-                      [(ngModel)]="selectedAddress.city" required />
-                    <div *ngIf="CityUpdate.errors && (CityUpdate.dirty || CityUpdate.touched)" class="alert alert-danger" id="alert-box">
+                    <input type="text" class="form-control" id="CityUpdate" name="CityUpdate" #CityUpdate="ngModel" [(ngModel)]="selectedAddress.city"
+                      required />
+                    <div *ngIf="CityUpdate.errors && (CityUpdate.dirty || CityUpdate.touched)" class="alert alert-danger">
                       <div [hidden]="!CityUpdate.errors.required">
                         <i class="fa fa-exclamation-triangle" aria-hidden="true"> City is required</i>
-                      </div>
-                      <div [hidden]="!CityUpdate.errors.minlength">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Valid City is required</i>
-                      </div>
-                      <div [hidden]="!CityUpdate.errors.maxlength">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Valid City is required</i>
                       </div>
                     </div>
                   </div>
@@ -242,17 +237,11 @@
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="Stateupdate">State<span class="text-danger"> *</span></label>
-                    <input type="text" class="form-control" id="Stateupdate" name="Stateupdate" minlength="2" maxlength="15" #Stateupdate="ngModel"
-                      [(ngModel)]="selectedAddress.state" required />
-                    <div *ngIf="Stateupdate.errors && (Stateupdate.dirty || Stateupdate.touched)" class="alert alert-danger" id="alert-box">
+                    <input type="text" class="form-control" id="Stateupdate" name="Stateupdate" #Stateupdate="ngModel" [(ngModel)]="selectedAddress.state"
+                      required />
+                    <div *ngIf="Stateupdate.errors && (Stateupdate.dirty || Stateupdate.touched)" class="alert alert-danger">
                       <div [hidden]="!Stateupdate.errors.required">
                         <i class="fa fa-exclamation-triangle" aria-hidden="true"> State is required</i>
-                      </div>
-                      <div [hidden]="!Stateupdate.errors.minlength">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Valid State is required</i>
-                      </div>
-                      <div [hidden]="!Stateupdate.errors.maxlength">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Valid State is required</i>
                       </div>
                     </div>
 
@@ -261,17 +250,11 @@
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="CountryUpdate">Country<span class="text-danger"> *</span></label>
-                    <input type="text" class="form-control" id="CountryUpdate" name="CountryUpdate" minlength="2" maxlength="10" #CountryUpdate="ngModel"
-                      [(ngModel)]="selectedAddress.country" required />
-                    <div *ngIf="CountryUpdate.errors && (CountryUpdate.dirty || CountryUpdate.touched)" class="alert alert-danger" id="alert-box">
+                    <input type="text" class="form-control" id="CountryUpdate" name="CountryUpdate" #CountryUpdate="ngModel" [(ngModel)]="selectedAddress.country"
+                      required />
+                    <div *ngIf="CountryUpdate.errors && (CountryUpdate.dirty || CountryUpdate.touched)" class="alert alert-danger">
                       <div [hidden]="!CountryUpdate.errors.required">
                         <i class="fa fa-exclamation-triangle" aria-hidden="true"> Country is required</i>
-                      </div>
-                      <div [hidden]="!CountryUpdate.errors.minlength">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Valid Country is required</i>
-                      </div>
-                      <div [hidden]="!CountryUpdate.errors.maxlength">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Valid Country is required</i>
                       </div>
                     </div>
 
@@ -279,15 +262,12 @@
                 </div>
                 <div class="col-md-2">
                   <div class="form-group">
-                    <label for="ZipcodeUpdate">ZipCode<span class="text-danger"> *</span><span class="little">12345-0987</span></label>
-                    <input type="text" class="form-control" id="ZipcodeUpdate" name="ZipcodeUpdate" #ZipcodeUpdate="ngModel" [(ngModel)]="selectedAddress.zipCode"
-                      required pattern="(\d{5}([\-]\d{4})?)" />
-                    <div *ngIf="ZipcodeUpdate.errors && (ZipcodeUpdate.dirty || ZipcodeUpdate.touched)" class="alert alert-danger" id="alert-box">
+                    <label for="ZipcodeUpdate">ZipCode<span class="text-danger"> *</span></label>
+                    <input type="number" class="form-control" id="ZipcodeUpdate" name="ZipcodeUpdate" #ZipcodeUpdate="ngModel" [(ngModel)]="selectedAddress.zipCode"
+                      required />
+                    <div *ngIf="ZipcodeUpdate.errors && (ZipcodeUpdate.dirty || ZipcodeUpdate.touched)" class="alert alert-danger">
                       <div [hidden]="!ZipcodeUpdate.errors.required">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> ZipCode is required</i>
-                      </div>
-                      <div [hidden]="!ZipcodeUpdate.errors.pattern">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Valid ZipCode is required</i>
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Zip is required</i>
                       </div>
                     </div>
 
@@ -311,13 +291,13 @@
     <div class="card">
       <form #occasionForm="ngForm">
         <div class="card-header bg-info text-white">
-          <strong>Occasions</strong>
+          Occasions
           <button type="button" class="btn btn-link btn-sm float-right fa fa-plus text-white" aria-hidden="true" *ngIf="readOnlyOccasion"
-            (click)="onOccasionCreateClick()"> <strong> Create</strong></button>
+            (click)="onOccasionCreateClick()"> Create</button>
           <button type="button" *ngIf="!readOnlyOccasion" class="btn btn-link btn-sm float-right fa fa-times toggleLeft text-white"
-            (click)="onOccasionUpdateCancleClick()"><strong> Cancel</strong></button>
+            (click)="onOccasionUpdateCancleClick()"> Cancel</button>
           <button type="button" [disabled]="!occasionForm.form.valid" *ngIf="!readOnlyOccasion" class="btn btn-link btn-sm float-right fa fa-check text-white"
-            (click)="onOccasionUpdateSaveClick()"><strong> Save</strong></button>
+            (click)="onOccasionUpdateSaveClick()"> Save</button>
         </div>
         <div class="card-block">
           <table class="table table-bordered table-hover table-sm" *ngIf="readOnlyOccasion">
@@ -347,30 +327,24 @@
               <div class="row">
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="occasionNameUpdate">Occasion Name<span class="text-danger"> *</span></label>
-                    <input type="text" class="form-control" required id="occasionNameUpdate" minlength="5" maxlength="15" name="occasionNameUpdate"
-                      #occasionNameUpdate="ngModel" [(ngModel)]="selectedOccasion.name" />
-                    <div *ngIf="occasionNameUpdate.errors && (occasionNameUpdate.dirty || occasionNameUpdate.touched)" class="alert alert-danger" id="alert-box">
+                    <label for="occasionNameUpdate">Name</label>
+                    <input type="text" class="form-control" required id="occasionNameUpdate" name="occasionNameUpdate" #occasionNameUpdate="ngModel"
+                      [(ngModel)]="selectedOccasion.name" />
+                    <div *ngIf="occasionNameUpdate.errors && (occasionNameUpdate.dirty || occasionNameUpdate.touched)" class="alert alert-danger">
                       <div [hidden]="!occasionNameUpdate.errors.required">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Name is required</i>
-                      </div>
-                      <div [hidden]="!occasionNameUpdate.errors.minlength">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Enter Valid Name</i>
-                      </div>
-                      <div [hidden]="!occasionNameUpdate.errors.maxlength">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Enter Valid Name</i>
+                        Name is required
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label for="occasionDateUpdate">Occasion Date<span class="text-danger"> *</span></label>
+                    <label for="occasionDateUpdate">Date</label>
                     <input type="date" required class="form-control" id="occasionDateUpdate" name="occasionDateUpdate" #occasionDateUpdate="ngModel"
                       [(ngModel)]="selectedOccasion.date" />
-                    <div *ngIf="occasionDateUpdate.errors && (occasionDateUpdate.dirty || occasionDateUpdate.touched)" class="alert alert-danger" id="alert-box">
+                    <div *ngIf="occasionDateUpdate.errors && (occasionDateUpdate.dirty || occasionDateUpdate.touched)" class="alert alert-danger">
                       <div [hidden]="!occasionDateUpdate.errors.required">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"> Date is required</i>
+                        Date is required
                       </div>
                     </div>
                   </div>

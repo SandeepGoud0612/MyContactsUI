@@ -84,7 +84,6 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   }
 
   onAddressDeleteClick(address: Address): void {
-
     this.selectedPerson.addressList = this.selectedPerson.addressList.filter(addressItem => address.id !== addressItem.id);
     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.personDetailsService.getPersonById(this.id).subscribe(person => {
@@ -120,8 +119,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));
   }
 
-  onOccasionDeleteClick(occasion: Occasion): void {
-    
+  onOccasionDeleteClick(occasion: Occasion): void {    
     this.selectedPerson.occasionList = this.selectedPerson.occasionList.filter(occasionItem => occasion.id !== occasionItem.id);
     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.personDetailsService.getPersonById(this.id).subscribe(person => {
