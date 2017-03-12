@@ -16,7 +16,8 @@ import { Address } from '../address';
 })
 export class PersonDetailsComponent implements OnInit, OnDestroy {
 
-  constructor(private route: ActivatedRoute, private personDetailsService: PersonDetailsService, private router: Router, private personService: PersonsService, private commonService: CommonService) { }
+  constructor(private route: ActivatedRoute, private personDetailsService: PersonDetailsService, 
+              private router: Router, private personService: PersonsService, private commonService: CommonService) { }
 
   id: number;
   private sub: any;

@@ -2,31 +2,29 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Person } from './person';
 import { Http, Response, Headers } from '@angular/http';
-
+import { CommonService } from './common.service';
 
 @Injectable()
 export class PersonDetailsService {
 
-  personsUri: string = 'http://localhost:8080/persons';
-
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private commonService: CommonService) { }
 
   getPersonById(id: number): Observable<Person> {
-    return this.http.get(this.personsUri + "/" + id)
+    return this.http.get(this.commonService.personsUri + "/" + id)
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
 
-  updatePerson(id: number, selectedPerson: Person): Observable<Person> {   
-    return this.http.put(this.personsUri + "/" + id, JSON.stringify(selectedPerson), { headers: this.headers })
+  updatePerson(id: number, selectedPerson: Person): Observable<Person> {
+    return this.http.put(this.commonService.personsUri + "/" + id, JSON.stringify(selectedPerson), { headers: this.headers })
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
 
   createPerson(selectedPerson: Person): Observable<Person> {
-    return this.http.post(this.personsUri, JSON.stringify(selectedPerson), { headers: this.headers })
+    return this.http.post(this.commonService.personsUri, JSON.stringify(selectedPerson), { headers: this.headers })
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
