@@ -33,14 +33,13 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   createAddress: boolean = false;
   createPerson: boolean = false;
 
-
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
     if (this.id) {
       this.personDetailsService.getPersonById(this.id).subscribe(person => {
-        this.selectedPerson = person;
+        this.selectedPerson = person;                
       });
     } else {
       this.createPerson = true;
@@ -59,6 +58,10 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   }
 
   onPersonDetailsUpdateSaveClick(): void {
+    if (this.selectedPerson.dob) {
+      let parts = this.selectedPerson.dob.toString().split('-');
+      this.selectedPerson.dob = new Date(parts['0'], parts['1'] - 1, parts['2']);
+    }
     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.selectedPerson = person;
       this.readonlyPersonalDetails = true;
@@ -66,14 +69,18 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
- onPersonDetailsCreateSaveClick(): void {
+  onPersonDetailsCreateSaveClick(): void {
+    if (this.selectedPerson.dob) {
+      let parts = this.selectedPerson.dob.toString().split('-');
+      this.selectedPerson.dob = new Date(parts['0'], parts['1'] - 1, parts['2']);
+    }
     this.personDetailsService.createPerson(this.selectedPerson).subscribe(person => {
       this.selectedPerson = person;
       this.readonlyPersonalDetails = true;
-      this.createPerson = false;     
+      this.createPerson = false;
       this.active = true;
       this.commonService.persons.push(this.selectedPerson);
-      this.router.navigate(['/person-details', this.selectedPerson.id]);
+      this.router.navigate(['/persons']);
     });
   }
 
@@ -81,7 +88,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     this.selectedAddress = address;
     this.readOnlyAddress = false;
     this.createAddress = false;
-     this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));
+    this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));
   }
 
   onAddressDeleteClick(address: Address): void {
@@ -106,7 +113,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   onAddressUpdateCancleClick(): void {
     this.readOnlyAddress = true;
     this.createAddress = false;
-     this.selectedPerson = JSON.parse(JSON.stringify(this.backupPerson));
+    this.selectedPerson = JSON.parse(JSON.stringify(this.backupPerson));
   }
 
   onAddressCreateClick(): void {
@@ -122,7 +129,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));
   }
 
-  onOccasionDeleteClick(occasion: Occasion): void {    
+  onOccasionDeleteClick(occasion: Occasion): void {
     this.selectedPerson.occasionList = this.selectedPerson.occasionList.filter(occasionItem => occasion.id !== occasionItem.id);
     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.personDetailsService.getPersonById(this.id).subscribe(person => {
@@ -138,6 +145,10 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   }
 
   onOccasionUpdateSaveClick(): void {
+    if (this.selectedOccasion.date) {
+      let parts = this.selectedOccasion.date.toString().split('-');
+      this.selectedOccasion.date = new Date(parts['0'], parts['1'] - 1, parts['2']);
+    }
     if (this.createOccasion) {
       this.selectedPerson.occasionList.push(this.selectedOccasion);
     }

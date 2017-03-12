@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs/Observable';
 import { Person } from './person';
 import { Http, Response, Headers } from '@angular/http';
+
 
 @Injectable()
 export class PersonDetailsService {
@@ -18,7 +19,7 @@ export class PersonDetailsService {
       .catch(this.handleError);
   }
 
-  updatePerson(id: number, selectedPerson: Person): Observable<Person> {
+  updatePerson(id: number, selectedPerson: Person): Observable<Person> {   
     return this.http.put(this.personsUri + "/" + id, JSON.stringify(selectedPerson), { headers: this.headers })
       .map((res: Response) => res.json())
       .catch(this.handleError);

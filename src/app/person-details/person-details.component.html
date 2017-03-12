@@ -6,7 +6,7 @@
           Personal Details
           <button class="btn btn-link btn-sm fa fa-pencil float-right text-white" *ngIf="readonlyPersonalDetails && !createPerson"
             (click)="onPersonalDetailsUpdateClick()" [disabled]="createAddress || !readOnlyAddress || createOccasion || !readOnlyOccasion"> Update</button>
-          <button class="btn btn-link btn-sm fa fa-check float-right text-white" *ngIf="createPerson" (click)="onPersonDetailsCreateSaveClick()"> Save</button>
+          <button class="btn btn-link btn-sm fa fa-check float-right text-white" *ngIf="createPerson" [disabled]="!personalDetailsForm.form.valid" (click)="onPersonDetailsCreateSaveClick()"> Save</button>
           <button class="btn btn-link btn-sm fa fa-times text-white float-right" *ngIf="!readonlyPersonalDetails" (click)="onPersonlDetailsUpdateCancleClick()"> Cancel</button>
           <button class="btn btn-link btn-sm fa fa-check float-right text-white" [disabled]="!personalDetailsForm.form.valid" *ngIf="!readonlyPersonalDetails"
             (click)="onPersonDetailsUpdateSaveClick()"> Save</button>
@@ -264,7 +264,7 @@
                   <div class="form-group">
                     <label for="ZipcodeUpdate">ZipCode<span class="text-danger"> *</span></label>
                     <input type="text" class="form-control" id="ZipcodeUpdate" name="ZipcodeUpdate" #ZipcodeUpdate="ngModel" [(ngModel)]="selectedAddress.zipCode"
-                      required pattern="(\d{5}([\-]\d{4})?)" maxlength="10"/>
+                      required pattern="(\d{5}([\-]\d{4})?)" maxlength="10" />
                     <div *ngIf="ZipcodeUpdate.errors && (ZipcodeUpdate.dirty || ZipcodeUpdate.touched)" class="alert alert-danger">
                       <div [hidden]="!ZipcodeUpdate.errors.required">
                         Zip is required
@@ -331,9 +331,9 @@
                   <div class="form-group">
                     <label for="occasionNameUpdate">Name</label>
                     <input type="text" class="form-control" required id="occasionNameUpdate" name="occasionNameUpdate" #occasionNameUpdate="ngModel"
-                      [(ngModel)]="selectedOccasion.name" maxlength="100"/>
+                      [(ngModel)]="selectedOccasion.name" maxlength="100" />
                     <div *ngIf="occasionNameUpdate.errors && (occasionNameUpdate.dirty || occasionNameUpdate.touched)" class="alert alert-danger">
-                      <div [hidden]="!occasionNameUpdate.errors.required" >
+                      <div [hidden]="!occasionNameUpdate.errors.required">
                         Name is required
                       </div>
                     </div>
