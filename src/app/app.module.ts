@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AppRoutingModule } from './app-routing.module' 
+import { AppRoutingModule } from './app-routing.module'
 
 import { AppComponent } from './app.component';
 import { PersonsComponent } from './persons/persons.component';
@@ -11,10 +11,11 @@ import { PersonsService } from './persons.service';
 import { PersonDetailsService } from './person-details.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CommonService } from './common.service';
+import { DashboardComponentService } from './dashboard-component.service';
 
 @NgModule({
   declarations: [
-    AppComponent,    
+    AppComponent,
     PersonsComponent,
     PersonDetailsComponent,
     DashboardComponent
@@ -25,7 +26,7 @@ import { CommonService } from './common.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ PersonsService, PersonDetailsService, CommonService ],
-  bootstrap: [ AppComponent ], 
+  providers: [PersonsService, PersonDetailsService, DashboardComponentService, CommonService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

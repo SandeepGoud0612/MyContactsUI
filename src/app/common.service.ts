@@ -6,5 +6,6 @@ export class CommonService {
     persons: Person[] = [];
 
     personsUri: string = 'http://localhost:8080/persons';
+    occasionsUri: string = 'http://localhost:8080/occasions';
 
 }
