@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module'
+import { UrlSerializer } from '@angular/router';
+import { CustomUrlSerializer } from './CustomUrlSerializer';
 
 import { AppComponent } from './app.component';
 import { PersonsComponent } from './persons/persons.component';
@@ -26,7 +28,8 @@ import { DashboardComponentService } from './dashboard-component.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [PersonsService, PersonDetailsService, DashboardComponentService, CommonService],
+  providers: [PersonsService, PersonDetailsService, DashboardComponentService, CommonService,
+    { provide: UrlSerializer, useClass: CustomUrlSerializer }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

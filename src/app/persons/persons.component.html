@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header bg-info text-white">
+            <div class="card-header bg-success text-white">
                 Search Criteria
                 <button type="button" class="btn btn-link btn-sm fa fa-search float-right text-white" (click)="getAllPersonsBySearchCriteria()"> Search</button>
             </div>
@@ -32,9 +32,9 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header bg-info text-white">
+            <div class="card-header bg-success text-white">
                 Contact List
-                <button type="button" class="btn btn-link btn-sm fa fa-plus float-right text-white" [routerLink]="['/person-details/create']"> Create</button>
+                <button type="button" class="btn btn-link btn-sm fa fa-plus float-right text-white" [routerLink]="['/#/person-details/create']"> Create</button>
             </div>
             <div class="card-block">
                 <table class="table table-bordered table-hover">
@@ -50,7 +50,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let person of commonService.persons">
-                            <td class="width20"><a [routerLink]="['/person-details', person.id]">{{person.firstName}}</a></td>
+                            <td class="width20"><a [routerLink]="['/#/person-details', person.id]">{{person.firstName}}</a></td>
                             <td class="width20">{{person.lastName}}</td>
                             <td class="width20">{{person.emailId}}</td>
                             <td class="width20">{{person.phoneNumber}}</td>
@@ -65,11 +65,11 @@
     </div>
 </div>
 
-<div class="modal fade" id="deletePerson" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deletePerson" tabindex="-1" role="dialog" aria-labelledby="deletePersonModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                <h5 class="modal-title" id="deletePersonModalLabel">Confirmation</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

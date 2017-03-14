@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="card">
       <form #personalDetailsForm="ngForm" *ngIf="active">
-        <div class="card-header bg-info text-white">
+        <div class="card-header bg-success text-white">
           Personal Details
           <button class="btn btn-link btn-sm fa fa-pencil float-right text-white" *ngIf="readonlyPersonalDetails && !createPerson"
             (click)="onPersonalDetailsUpdateClick()" [disabled]="createAddress || !readOnlyAddress || createOccasion || !readOnlyOccasion"> Update</button>
@@ -170,7 +170,7 @@
   <div class="col-md-12">
     <div class="card">
       <form #addressForm="ngForm">
-        <div class="card-header bg-info text-white">
+        <div class="card-header bg-success text-white">
           Address
           <button type="button" class="btn btn-link btn-sm float-right fa fa-plus text-white" aria-hidden="true" *ngIf="readOnlyAddress"
             (click)="onAddressCreateClick()" [disabled]="!readonlyPersonalDetails || createOccasion || !readOnlyOccasion"> Create</button>
@@ -332,7 +332,7 @@
   <div class="col-md-12">
     <div class="card">
       <form #occasionForm="ngForm">
-        <div class="card-header bg-info text-white">
+        <div class="card-header bg-success text-white">
           Occasions
           <button type="button" class="btn btn-link btn-sm float-right fa fa-plus text-white" aria-hidden="true" *ngIf="readOnlyOccasion"
             (click)="onOccasionCreateClick()" [disabled]="!readonlyPersonalDetails || createAddress || !readOnlyAddress"> Create</button>
