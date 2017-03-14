@@ -16,8 +16,8 @@ import { Address } from '../address';
 })
 export class PersonDetailsComponent implements OnInit, OnDestroy {
 
-  constructor(private route: ActivatedRoute, private personDetailsService: PersonDetailsService, 
-              private router: Router, private personService: PersonsService, private commonService: CommonService) { }
+  constructor(private route: ActivatedRoute, private personDetailsService: PersonDetailsService,
+    private router: Router, private personService: PersonsService, private commonService: CommonService) { }
 
   id: number;
   private sub: any;
@@ -40,7 +40,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     });
     if (this.id) {
       this.personDetailsService.getPersonById(this.id).subscribe(person => {
-        this.selectedPerson = person;                
+        this.selectedPerson = person;
       });
     } else {
       this.createPerson = true;
@@ -92,8 +92,12 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));
   }
 
-  onAddressDeleteClick(address: Address): void {
-    this.selectedPerson.addressList = this.selectedPerson.addressList.filter(addressItem => address.id !== addressItem.id);
+  selectAddressForDelete(address: Address): void {
+    this.selectedAddress = address;
+  }
+
+  onAddressDeleteClick(): void {
+    this.selectedPerson.addressList = this.selectedPerson.addressList.filter(addressItem => this.selectedAddress.id !== addressItem.id);
     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.personDetailsService.getPersonById(this.id).subscribe(person => {
         this.selectedPerson = person;
@@ -130,8 +134,12 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     this.backupPerson = JSON.parse(JSON.stringify(this.selectedPerson));
   }
 
-  onOccasionDeleteClick(occasion: Occasion): void {
-    this.selectedPerson.occasionList = this.selectedPerson.occasionList.filter(occasionItem => occasion.id !== occasionItem.id);
+  selectOccasionForDelete(occasion: Occasion): void {
+    this.selectedOccasion = occasion;
+  }
+
+  onOccasionDeleteClick(): void {
+    this.selectedPerson.occasionList = this.selectedPerson.occasionList.filter(occasionItem => this.selectedOccasion.id !== occasionItem.id);
     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.personDetailsService.getPersonById(this.id).subscribe(person => {
         this.selectedPerson = person;

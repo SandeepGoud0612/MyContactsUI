@@ -13,10 +13,15 @@ export class PersonsComponent implements OnInit {
 
   persons: Person[] = [];
   personSearchCriteria: PersonSearchCriteria = new PersonSearchCriteria();
+  personSelected: Person;
 
   constructor(private personService: PersonsService, private commonService: CommonService) { }
 
   ngOnInit() {
+  }
+
+  selectPersonForDelete(personDelete: Person): void {
+    this.personSelected = personDelete;
   }
 
   getAllPersonsBySearchCriteria(): void {
@@ -27,9 +32,9 @@ export class PersonsComponent implements OnInit {
     this.personService.getAllPersons().subscribe(persons => this.commonService.persons = persons);
   }
 
-  deletePerson(personDelete: Person): void {    
-    this.personService.deletePerson(personDelete.id).subscribe(() => {
-      this.commonService.persons = this.commonService.persons.filter(person => personDelete.id !== person.id);
+  deletePerson(): void {
+    this.personService.deletePerson(this.personSelected.id).subscribe(() => {
+      this.commonService.persons = this.commonService.persons.filter(person => this.personSelected.id !== person.id);
     });
   }
 

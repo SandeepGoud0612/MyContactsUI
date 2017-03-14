@@ -204,7 +204,7 @@
                 <td class="width10"><button type="button" class="btn btn-link fa fa-pencil text-success" aria-hidden="true" *ngIf="readOnlyAddress"
                     (click)="onAddressUpdateClick(address)" [disabled]="!readonlyPersonalDetails || createOccasion || !readOnlyOccasion"> Update</button></td>
                 <td class="width10"><button type="button" class="btn btn-link fa fa-trash text-danger" aria-hidden="true" *ngIf="readOnlyAddress"
-                    (click)="onAddressDeleteClick(address)" [disabled]="!readonlyPersonalDetails || createOccasion || !readOnlyOccasion"> Delete</button></td>
+                    (click)="selectAddressForDelete(address)" [disabled]="!readonlyPersonalDetails || createOccasion || !readOnlyOccasion" data-toggle="modal" data-target="#deletePersonAddress"> Delete</button></td>
               </tr>
             </tbody>
           </table>
@@ -306,6 +306,25 @@
   </div>
 </div>
 
+<div class="modal fade" id="deletePersonAddress" tabindex="-1" role="dialog" aria-labelledby="deletePersonAddressLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deletePersonAddressLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                Are you sure want to delete address?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" (click)="onAddressDeleteClick()" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <br>
 
@@ -341,7 +360,8 @@
                 <td class="width10"><button type="button" class="btn btn-link fa fa-pencil text-success" aria-hidden="true" *ngIf="readOnlyOccasion"
                     (click)="onOccasionUpdateClick(occasion)" [disabled]="!readonlyPersonalDetails || createAddress || !readOnlyAddress"> Update</button></td>
                 <td class="width10"><button type="button" class="btn btn-link fa fa-trash text-danger" aria-hidden="true" *ngIf="readOnlyOccasion"
-                    (click)="onOccasionDeleteClick(occasion)" [disabled]="!readonlyPersonalDetails || createAddress || !readOnlyAddress"> Delete</button></td>
+                    (click)="selectOccasionForDelete(occasion)" [disabled]="!readonlyPersonalDetails || createAddress || !readOnlyAddress"
+                    data-toggle="modal" data-target="#deletePersonOccasion"> Delete</button></td>
               </tr>
             </tbody>
           </table>
@@ -390,4 +410,24 @@
       </form>
     </div>
   </div>
+</div>
+
+<div class="modal fade" id="deletePersonOccasion" tabindex="-1" role="dialog" aria-labelledby="deletePersonOccasionLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deletePersonOccasionLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                Are you sure want to delete occasion?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" (click)="onOccasionDeleteClick()" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
 </div>

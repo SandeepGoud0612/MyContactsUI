@@ -21,7 +21,7 @@
                         <label for="emailIdRead">E-mail Id</label>
                         <input type="email" class="form-control" id="emailIdRead" name="emailIdRead" [(ngModel)]="personSearchCriteria.emailId" />
                     </div>
-                </div>              
+                </div>
             </div>
         </div>
     </div>
@@ -56,10 +56,30 @@
                             <td class="width20">{{person.phoneNumber}}</td>
                             <td class="width5">{{person.dob | date: 'MMM/dd/yyyy'}}</td>
                             <td class="width5"><button type="button" class="btn btn-link btn-sm fa fa-trash text-danger" aria-hidden="true"
-                                    (click)="deletePerson(person)"> Delete</button></td>
+                                    data-toggle="modal" data-target="#deletePerson" (click)="selectPersonForDelete(person)"> Delete</button></td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deletePerson" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                Are you sure want to delete person?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" (click)="deletePerson()" data-dismiss="modal">Yes</button>
             </div>
         </div>
     </div>
