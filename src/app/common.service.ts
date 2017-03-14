@@ -5,10 +5,10 @@ export class CommonService {
 
     persons: Person[] = [];
 
-    personsUri: string = 'http://localhost:8080/person';
-    occasionsUri: string = 'http://localhost:8080/occasions';
+    //personsUri: string = 'http://localhost:8080/person';
+    //occasionsUri: string = 'http://localhost:8080/occasions';
 
-    //personsUri: string = '/person';
-    //occasionsUri: string = '/occasions';
+    personsUri: string = '/person';
+    occasionsUri: string = '/occasions';
 
 }

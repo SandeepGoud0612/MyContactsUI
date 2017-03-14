@@ -112,6 +112,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(Person => {
       this.selectedPerson = Person;
       this.readOnlyAddress = true;
+      this.createAddress = false;
     });
   }
 
@@ -164,6 +165,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.selectedPerson = person;
       this.readOnlyOccasion = true;
+      this.createOccasion = false;
       this.ngOnInit();
     });
   }
