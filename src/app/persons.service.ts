@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { PersonSearchCriteria } from './person-search-criteria';
 import { CommonService } from './common.service';
+import { AlertType } from './alerttype';
 
 @Injectable()
 export class PersonsService {
@@ -33,8 +34,7 @@ export class PersonsService {
   }
 
   private handleError(error: any) {
-    let errMsg = (error.message) ? error.message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg);
+    let errMsg = (error.message) ? error.message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';     
     return Observable.throw(errMsg);
   }
 

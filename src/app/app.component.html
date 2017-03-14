@@ -13,6 +13,12 @@
         </div>
     </div>
     <div class="card-block">
+        <div class="{{commonService.alertClass}}" role="alert" *ngIf="commonService.showAlert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="commonService.hideAlert()">
+                <span>&times;</span>
+            </button>
+            <strong>{{commonService.alertMessage}}</strong>
+        </div>
         <router-outlet></router-outlet>
     </div>
 </div>
