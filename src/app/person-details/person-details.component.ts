@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { CommonService } from '../common.service';
 import { PersonsService } from '../persons.service';
 import { Address } from '../address';
+import { ApplicationConstants } from '../constants';
+import { AlertType } from '../alerttype';
 
 @Component({
   selector: 'app-person-details',
@@ -67,7 +69,16 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
       this.selectedPerson = person;
       this.readonlyPersonalDetails = true;
       this.ngOnInit();
-    });
+      this.commonService.showAlert = true;
+      this.commonService.alertMessage = ApplicationConstants.PERSONAL_DETAILS_UPDATED_SUCCESSFULLY;
+      this.commonService.alertType = AlertType.Success;
+    },
+      err => {
+        this.commonService.showAlert = true;
+        this.commonService.alertMessage = ApplicationConstants.PERSONAL_DETAILS_NOT_UPDATED;
+        this.commonService.alertType = AlertType.Error;
+      }
+    );
   }
 
   onPersonDetailsCreateSaveClick(): void {
@@ -81,8 +92,16 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
       this.createPerson = false;
       this.active = true;
       this.commonService.persons.push(this.selectedPerson);
+      this.commonService.showAlert = true;
+      this.commonService.alertMessage = ApplicationConstants.PERSON_CREATED_SUCCESSFULLY;
+      this.commonService.alertType = AlertType.Success;
       this.router.navigate(['/#/persons']);
-    });
+    },
+      err => {
+        this.commonService.showAlert = true;
+        this.commonService.alertMessage = ApplicationConstants.PERSON_NOT_CREATED;
+        this.commonService.alertType = AlertType.Error;
+      });
   }
 
   onAddressUpdateClick(address: Address): void {
@@ -102,7 +121,15 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
       this.personDetailsService.getPersonById(this.id).subscribe(person => {
         this.selectedPerson = person;
       });
-    });
+      this.commonService.showAlert = true;
+      this.commonService.alertMessage = ApplicationConstants.ADDRESS_DELETED_SUCCESSFULLY;
+      this.commonService.alertType = AlertType.Success;
+    },
+      err => {
+        this.commonService.showAlert = true;
+        this.commonService.alertMessage = ApplicationConstants.ADDRESS_NOT_DELETED;
+        this.commonService.alertType = AlertType.Error;
+      });
   }
 
   onAddressUpdateSaveClick(): void {
@@ -111,9 +138,30 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     }
     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(Person => {
       this.selectedPerson = Person;
+      if (this.createAddress) {
+        this.commonService.showAlert = true;
+        this.commonService.alertMessage = ApplicationConstants.ADDRESS_CREATED_SUCCESSFULLY;
+        this.commonService.alertType = AlertType.Success;
+      } else {
+        this.commonService.showAlert = true;
+        this.commonService.alertMessage = ApplicationConstants.ADDRESS_UPDATED_SUCCESSFULLY;
+        this.commonService.alertType = AlertType.Success;
+      }
       this.readOnlyAddress = true;
       this.createAddress = false;
-    });
+    },
+      err => {
+        if (this.createAddress) {
+          this.commonService.showAlert = true;
+          this.commonService.alertMessage = ApplicationConstants.ADDRESS_NOT_CREATED;
+          this.commonService.alertType = AlertType.Error;
+        } else {
+          this.commonService.showAlert = true;
+          this.commonService.alertMessage = ApplicationConstants.ADDRESS_NOT_UPDATED;
+          this.commonService.alertType = AlertType.Error;
+        }
+      }
+    );
   }
 
   onAddressUpdateCancleClick(): void {
@@ -145,7 +193,15 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
       this.personDetailsService.getPersonById(this.id).subscribe(person => {
         this.selectedPerson = person;
       });
-    });
+      this.commonService.showAlert = true;
+      this.commonService.alertMessage = ApplicationConstants.OCCASION_DELETED_SUCCESSFULLY;
+      this.commonService.alertType = AlertType.Success;
+    },
+      err => {
+        this.commonService.showAlert = true;
+        this.commonService.alertMessage = ApplicationConstants.OCCASION_NOT_DELETED;
+        this.commonService.alertType = AlertType.Error;
+      });
   }
 
   onOccasionUpdateCancleClick(): void {
@@ -164,10 +220,30 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     }
     this.personDetailsService.updatePerson(this.selectedPerson.id, this.selectedPerson).subscribe(person => {
       this.selectedPerson = person;
+      this.ngOnInit();
+      if (this.createOccasion) {
+        this.commonService.showAlert = true;
+        this.commonService.alertMessage = ApplicationConstants.OCCASION_CREATED_SUCCESSFULLY;
+        this.commonService.alertType = AlertType.Success;
+      } else {
+        this.commonService.showAlert = true;
+        this.commonService.alertMessage = ApplicationConstants.OCCASION_UPDATED_SUCCESSFULLY;
+        this.commonService.alertType = AlertType.Success;
+      }
       this.readOnlyOccasion = true;
       this.createOccasion = false;
-      this.ngOnInit();
-    });
+    },
+      err => {
+        if (this.createOccasion) {
+          this.commonService.showAlert = true;
+          this.commonService.alertMessage = ApplicationConstants.OCCASION_NOT_CREATED;
+          this.commonService.alertType = AlertType.Error;
+        } else {
+          this.commonService.showAlert = true;
+          this.commonService.alertMessage = ApplicationConstants.OCCASION_NOT_UPDATED;
+          this.commonService.alertType = AlertType.Error;
+        }
+      });
   }
 
   onOccasionCreateClick(): void {
